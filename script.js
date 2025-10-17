@@ -1,5 +1,20 @@
+// ============================================
+// STATE MANAGEMENT
+// ============================================
+
 // Object to store both selected colors
 const selected = {color1: null, color2:null};
+
+// Game state to track mode, target color, and score
+const gameState = {
+    mode: 'practice',
+    targetColor: null,
+    score: 0
+};
+
+// ============================================
+// DATA - COLOR MIXING COMBINATIONS
+// ============================================
 
 // Pre-defined color mixing results (stored as combinations)
 const mixingResults = {
@@ -46,6 +61,9 @@ const mixingResults = {
     '#FFFFFF-#FF00FF': '#FF80FF'  // White + Magenta = Light Magenta
 };
 
+// ============================================
+// COLOR SELECTION - EVENT LISTENERS
+// ============================================
 
 // Add click event to all color buttons at once
 document.querySelectorAll('.color-btn').forEach(btn => {
@@ -60,6 +78,10 @@ document.querySelectorAll('.color-btn').forEach(btn => {
         document.getElementById(`${target}-display`).innerHTML = '';
     });
 });
+
+// ============================================
+// PRACTICE MODE - MIX & RESET BUTTONS
+// ============================================
 
 // Mix button - combines the two colors
 document.getElementById('mix-btn').addEventListener('click', function() {
@@ -93,6 +115,97 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     document.getElementById('result-hex').textContent = '';
 });
 
+// ============================================
+// GAME MODE - MODE TOGGLE & TARGET GENERATION
+// ============================================
+
+// Mode toggle functionality
+document.getElementById('practice-mode-btn').addEventListener('click', () => setMode('practice'));
+document.getElementById('game-mode-btn').addEventListener('click', () => setMode('game'));
+
+// Set mode and update UI
+function setMode(mode) {
+    gameState.mode = mode;
+    const isPractice = mode === 'practice';
+    
+    document.getElementById('practice-mode-btn').classList.toggle('active', isPractice);
+    document.getElementById('game-mode-btn').classList.toggle('active', !isPractice);
+    document.getElementById('target-section').style.display = isPractice ? 'none' : 'block';
+    document.getElementById('mix-btn').style.display = isPractice ? 'block' : 'none';
+    document.getElementById('check-btn').style.display = isPractice ? 'none' : 'block';
+    document.getElementById('feedback').textContent = '';
+
+    if (!isPractice) {
+        gameState.score = 0;
+        document.getElementById('score-display').textContent = `Score: 0`;
+        generateNewTarget();
+    }
+}
+
+// Generate random target color
+function generateNewTarget() {
+    const allResults = Object.values(mixingResults);
+    gameState.targetColor = allResults[Math.floor(Math.random() * allResults.length)];
+    document.getElementById('target-display').style.backgroundColor = gameState.targetColor;
+    document.getElementById('feedback').textContent = '';
+}
+
+// ============================================
+// GAME MODE - CHECK ANSWER FUNCTIONALITY
+// ============================================
+// Check answer button - validates user's color mix against target
+document.getElementById('check-btn').addEventListener('click', function() {
+    // Ensure both colors are selected
+    if (!selected.color1 || !selected.color2) {
+        alert('Please select both colors before checking!');
+        return;
+    }
+
+    // Get the mixed color result
+    const mixed = getMixedColor(selected.color1, selected.color2);
+    
+    // Display the mixed result
+    document.getElementById('result-display').style.backgroundColor = mixed;
+    document.getElementById('result-display').innerHTML = '';
+    document.getElementById('result-hex').textContent = `Hex Code: ${mixed}`;
+
+    // Check if answer is correct and provide feedback
+    const feedback = document.getElementById('feedback');
+    if (mixed === gameState.targetColor) {
+        // Correct answer
+        gameState.score++;
+        feedback.textContent = '✓ Correct!';
+        feedback.className = 'feedback correct';
+        document.getElementById('score-display').textContent = `Score: ${gameState.score}`;
+        
+        // After 1.5 seconds, load new target and reset selections
+        setTimeout(() => {
+            generateNewTarget();
+            resetSelections();
+        }, 1500);
+    } else {
+        // Incorrect answer
+        feedback.textContent = '✗ Try again!';
+        feedback.className = 'feedback incorrect';
+    }
+});
+
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
+// Helper function to reset color selections
+function resetSelections() {
+    // Clear stored color values
+    selected.color1 = null;
+    selected.color2 = null;
+    
+    // Reset display areas to default state
+    ['color1', 'color2'].forEach(id => {
+        document.getElementById(`${id}-display`).style.backgroundColor = '#f9f9f9';
+        document.getElementById(`${id}-display`).innerHTML = '<p>No color selected</p>';
+    });
+}
+
 // Function to get the mixed color from pre-stored results
 function getMixedColor(color1, color2) {
     // Create key by combining both colors
@@ -103,13 +216,13 @@ function getMixedColor(color1, color2) {
         return mixingResults[key];
     }
 
-    // If not found, try the reverse order
+    // If not found, try the reverse order (e.g., color2-color1)
     const reverseKey = `${color2}-${color1}`;
     if (mixingResults[reverseKey]) {
         return mixingResults[reverseKey];
     }
 
-    //if same color is selected twice, return that color
+    // If same color is selected twice, return that color
     if (color1 === color2) {
         return color1;
     }
