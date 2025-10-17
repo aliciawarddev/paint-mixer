@@ -12,6 +12,21 @@
     <div class="container">
         <!-- App title -->
         <h1>Paint Mixer</h1>
+
+        <!-- Mode toggle buttons -->
+        <div class="mode-toggle">
+            <button id="practice-mode-btn" class="mode-btn active">Practice Mode</button>
+            <button id="game-mode-btn" class="mode-btn">Game Mode</button>
+        </div>
+
+        <!-- Target color section (only visible in game mode) -->
+        <div id="target-section" class="target-section" style="display: none;">
+            <h2>Target Color</h2>
+            <div id="target-display" class="target-display"></div>
+            <p id="score-display">Score: 0</p>
+        </div>
+
+        <!-- SELECT COLOR 1-->
         
         <!-- Section for selecting the first color -->
         <div class="color-section">
@@ -31,6 +46,8 @@
             </div>
         </div>
 
+        <!-- SELECT COLOR 2-->
+
         <!-- Section for selecting the second color -->
         <div class="color-section">
             <h2>Select Second Color</h2>
@@ -49,8 +66,16 @@
             </div>
         </div>
 
+        <!-- MIX COLORS -->
+
         <!-- Button to trigger the mixing action -->
         <button id="mix-btn" class="action-btn">Mix Colors!</button>
+        
+        <!-- Check button (only visible in game mode) -->
+        <button id="check-btn" class="action-btn" style="display: none;">Check Answer</button>
+        
+        <!-- Feedback message (only visible in game mode) -->
+        <p id="feedback" class="feedback"></p>
 
         <!-- Section to display the result of mixing -->
         <div id="result-section" class="result-section">
