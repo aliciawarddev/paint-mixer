@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paint Mixer App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main container for the entire app -->
+    <div class="container">
+        <!-- App title -->
+        <h1>Paint Mixer</h1>
+        
+        <!-- Section for selecting the first color -->
+        <div class="color-section">
+            <h2>Select First Color</h2>
+            <!-- Container to display the selected color -->
+            <div id="color1-display" class="color-display">
+                <p>No color selected</p>
+            </div>
+            <!-- Color options for first selection -->
+            <div class="color-options">
+                <button class="color-btn" data-color="#FF0000" data-target="color1" style="background-color: #FF0000;"></button>
+                <button class="color-btn" data-color="#0000FF" data-target="color1" style="background-color: #0000FF;"></button>
+                <button class="color-btn" data-color="#FFFF00" data-target="color1" style="background-color: #FFFF00;"></button>
+                <button class="color-btn" data-color="#00FF00" data-target="color1" style="background-color: #00FF00;"></button>
+                <button class="color-btn" data-color="#FF00FF" data-target="color1" style="background-color: #FF00FF;"></button>
+                <button class="color-btn" data-color="#FFFFFF" data-target="color1" style="background-color: #FFFFFF;"></button>
+            </div>
+        </div>
+
+        <!-- Section for selecting the second color -->
+        <div class="color-section">
+            <h2>Select Second Color</h2>
+            <!-- Container to display the selected color -->
+            <div id="color2-display" class="color-display">
+                <p>No color selected</p>
+            </div>
+            <!-- Color options for second selection -->
+            <div class="color-options">
+                <button class="color-btn" data-color="#FF0000" data-target="color2" style="background-color: #FF0000;"></button>
+                <button class="color-btn" data-color="#0000FF" data-target="color2" style="background-color: #0000FF;"></button>
+                <button class="color-btn" data-color="#FFFF00" data-target="color2" style="background-color: #FFFF00;"></button>
+                <button class="color-btn" data-color="#00FF00" data-target="color2" style="background-color: #00FF00;"></button>
+                <button class="color-btn" data-color="#FF00FF" data-target="color2" style="background-color: #FF00FF;"></button>
+                <button class="color-btn" data-color="#FFFFFF" data-target="color2" style="background-color: #FFFFFF;"></button>
+            </div>
+        </div>
+
+        <!-- Button to trigger the mixing action -->
+        <button id="mix-btn" class="action-btn">Mix Colors!</button>
+
+        <!-- Section to display the result of mixing -->
+        <div id="result-section" class="result-section">
+            <h2>Mixed Color Result</h2>
+            <div id="result-display" class="result-display">
+                <p>Select two colors and click "Mix Colors!"</p>
+            </div>
+            <p id="result-hex"></p>
+        </div>
+
+        <!-- Button to reset all selections -->
+        <button id="reset-btn" class="action-btn secondary">Reset</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
