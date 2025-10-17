@@ -18,54 +18,38 @@ const gameState = {
 
 // Pre-defined color mixing results (stored as combinations)
 const mixingResults = {
-    // Red combinations
-    '#FF0000-#0000FF': '#800080', // Red + Blue = Purple
-    '#FF0000-#FFFF00': '#FF8000', // Red + Yellow = Orange
-    '#FF0000-#00FF00': '#808000', // Red + Green = Olive/Brown
-    '#FF0000-#FF00FF': '#FF0080', // Red + Magenta = Rose
-    '#FF0000-#FFFFFF': '#FF8080', // Red + White = Light Red/Pink
+    // Primary combinations
+    '#1F4F99-#FF361C': '#823A84', // Blue + Red = Purple
+    '#FF361C-#1F4F99': '#823A84', // Red + Blue = Purple
+    '#FF361C-#FEFF01': '#FF851E', // Red + Yellow = Orange
+    '#FEFF01-#FF361C': '#FF851E', // Yellow + Red = Orange
+    '#FEFF01-#1F4F99': '#2A892D', // Yellow + Blue = Green
+    '#1F4F99-#FEFF01': '#2A892D', // Blue + Yellow = Green
     
-    // Blue combinations
-    '#0000FF-#FF0000': '#800080', // Blue + Red = Purple
-    '#0000FF-#FFFF00': '#00FF00', // Blue + Yellow = Green
-    '#0000FF-#00FF00': '#008080', // Blue + Green = Teal/Cyan
-    '#0000FF-#FF00FF': '#8000FF', // Blue + Magenta = Blue-Violet
-    '#0000FF-#FFFFFF': '#8080FF', // Blue + White = Light Blue
+    // Secondary combinations with red
+    '#FF361C-#823A84': '#E01F34', // Red + Purple = Dark Red
+    '#823A84-#FF361C': '#E01F34', // Purple + Red = Dark Red
+    '#FF361C-#FF851E': '#FE531B', // Red + Orange = Red-Orange
+    '#FF851E-#FF361C': '#FE531B', // Orange + Red = Red-Orange
     
-    // Yellow combinations
-    '#FFFF00-#FF0000': '#FF8000', // Yellow + Red = Orange
-    '#FFFF00-#0000FF': '#00FF00', // Yellow + Blue = Green
-    '#FFFF00-#00FF00': '#80FF00', // Yellow + Green = Yellow-Green
-    '#FFFF00-#FF00FF': '#FF80FF', // Yellow + Magenta = Light Pink
-    '#FFFF00-#FFFFFF': '#FFFF80', // Yellow + White = Light Yellow
+    // Secondary combinations with blue
+    '#1F4F99-#2A892D': '#0173B1', // Blue + Green = Blue-Green
+    '#2A892D-#1F4F99': '#0173B1', // Green + Blue = Blue-Green
+    '#1F4F99-#823A84': '#3D317B', // Blue + Purple = Blue-Purple
+    '#823A84-#1F4F99': '#3D317B', // Purple + Blue = Blue-Purple
     
-    // Green combinations
-    '#00FF00-#FF0000': '#808000', // Green + Red = Olive/Brown
-    '#00FF00-#0000FF': '#008080', // Green + Blue = Teal/Cyan
-    '#00FF00-#FFFF00': '#80FF00', // Green + Yellow = Yellow-Green
-    '#00FF00-#FF00FF': '#80FF80', // Green + Magenta = Light Green
-    '#00FF00-#FFFFFF': '#80FF80', // Green + White = Light Green
-    
-    // Magenta combinations
-    '#FF00FF-#FF0000': '#FF0080', // Magenta + Red = Rose
-    '#FF00FF-#0000FF': '#8000FF', // Magenta + Blue = Blue-Violet
-    '#FF00FF-#FFFF00': '#FF80FF', // Magenta + Yellow = Light Pink
-    '#FF00FF-#00FF00': '#80FF80', // Magenta + Green = Light Green
-    '#FF00FF-#FFFFFF': '#FF80FF', // Magenta + White = Light Magenta
-    
-    // White combinations
-    '#FFFFFF-#FF0000': '#FF8080', // White + Red = Light Red/Pink
-    '#FFFFFF-#0000FF': '#8080FF', // White + Blue = Light Blue
-    '#FFFFFF-#FFFF00': '#FFFF80', // White + Yellow = Light Yellow
-    '#FFFFFF-#00FF00': '#80FF80', // White + Green = Light Green
-    '#FFFFFF-#FF00FF': '#FF80FF'  // White + Magenta = Light Magenta
+    // Secondary combinations with yellow
+    '#FEFF01-#2A892D': '#AEB71E', // Yellow + Green = Yellow-Green
+    '#2A892D-#FEFF01': '#AEB71E', // Green + Yellow = Yellow-Green
+    '#FEFF01-#FF851E': '#FDA230', // Yellow + Orange = Yellow-Orange
+    '#FF851E-#FEFF01': '#FDA230'  // Orange + Yellow = Yellow-Orange
 };
 
 // ============================================
 // COLOR SELECTION - EVENT LISTENERS
 // ============================================
 
-// Add click event to all color buttons at once
+// REPLACE the existing forEach block with:
 document.querySelectorAll('.color-btn').forEach(btn => {
     btn.addEventListener('click', function() {
         // Get the color and which slot it's for from the button
@@ -76,6 +60,9 @@ document.querySelectorAll('.color-btn').forEach(btn => {
         selected[target] = color;
         document.getElementById(`${target}-display`).style.backgroundColor = color;
         document.getElementById(`${target}-display`).innerHTML = '';
+        
+        // Update available colors in the other section
+        updateAvailableColors(target, color);
     });
 });
 
@@ -113,6 +100,13 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     document.getElementById('result-display').style.backgroundColor = '#f9f9f9';
     document.getElementById('result-display').innerHTML = '<p>Select two colors and click "Mix Colors!"</p>';
     document.getElementById('result-hex').textContent = '';
+
+    // Re-enable all color buttons
+    document.querySelectorAll('.color-btn').forEach(btn => {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+    });
 });
 
 // ============================================
@@ -228,5 +222,53 @@ function getMixedColor(color1, color2) {
     }
 
     // Fallback (shouldn't happen if all combinations are defined)
-    return '#808080'; // Grey as default
+    return null; // Return null for invalid combinations
 }
+
+// Function to update which color buttons are available based on selection
+function updateAvailableColors(targetSection, selectedColor) {
+    // Don't restrict colors in game mode - keep the challenge!
+    if (gameState.mode === 'game') {
+        return;
+    }
+    
+    // Get all buttons for the OTHER section (not the one that was just clicked)
+    const otherSection = targetSection === 'color1' ? 'color2' : 'color1';
+    const buttons = document.querySelectorAll(`[data-target="${otherSection}"]`);
+    
+    // If no color selected yet, enable all buttons
+    if (!selectedColor) {
+        buttons.forEach(btn => {
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            btn.style.cursor = 'pointer';
+        });
+        return;
+    }
+    
+    // Find all valid combinations for the selected color
+    const validColors = new Set();
+    Object.keys(mixingResults).forEach(key => {
+        if (key.includes(selectedColor)) {
+            // Extract the other color from the key
+            const colors = key.split('-');
+            const otherColor = colors[0] === selectedColor ? colors[1] : colors[0];
+            validColors.add(otherColor);
+        }
+    });
+    
+    // Enable/disable buttons based on valid combinations
+    buttons.forEach(btn => {
+        const color = btn.dataset.color;
+        if (validColors.has(color)) {
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            btn.style.cursor = 'pointer';
+        } else {
+            btn.disabled = true;
+            btn.style.opacity = '0.3';
+            btn.style.cursor = 'not-allowed';
+        }
+    });
+}
+

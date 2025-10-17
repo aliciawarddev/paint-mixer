@@ -235,3 +235,14 @@ h2 {
 .feedback.incorrect {
     color: #e74c3c;
 }
+
+/* Disabled color button styling */
+.color-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.color-btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
