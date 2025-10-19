@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +12,6 @@
         <!-- App title -->
         <h1>Paint Mixer</h1>
 
-        <!-- Color Wheel Image -->
-        <img src="img-color-wheel.jpg">
-
         <!-- Mode toggle buttons -->
         <div class="mode-toggle">
             <button id="practice-mode-btn" class="mode-btn active">Practice Mode</button>
@@ -29,43 +25,68 @@
             <p id="score-display">Score: 0</p>
         </div>
 
-        <!-- SELECT COLOR 1-->
-        
-        <!-- Section for selecting the first color -->
-        <div class="color-section">
-            <h2>Select First Color</h2>
-            <!-- Container to display the selected color -->
-            <div id="color1-display" class="color-display">
-                <p>No color selected</p>
+        <!-- Color selection container with palette -->
+        <div class="color-selection-container">
+            <!-- SELECT COLOR 1-->
+            <div class="color-section">
+                <h2>Select First Color</h2>
+                <div id="color1-display" class="color-display">
+                    <p>No color selected</p>
+                </div>
+                <div class="color-options circular">
+                    <button class="color-btn paint-blob" data-color="#FF361C" data-name="Red" data-target="color1" style="background-color: #FF361C;">
+                        <span class="shine"></span>
+                    </button>
+                    <button class="color-btn paint-blob" data-color="#FF851E" data-name="Orange" data-target="color1" style="background-color: #FF851E;">
+                        <span class="shine"></span>
+                    </button>
+                    <button class="color-btn paint-blob" data-color="#FEFF01" data-name="Yellow" data-target="color1" style="background-color: #FEFF01;">
+                        <span class="shine"></span>
+                    </button>
+                    <button class="color-btn paint-blob" data-color="#2A892D" data-name="Green" data-target="color1" style="background-color: #2A892D;">
+                        <span class="shine"></span>
+                    </button>
+                    <button class="color-btn paint-blob" data-color="#1F4F99" data-name="Blue" data-target="color1" style="background-color: #1F4F99;">
+                        <span class="shine"></span>
+                    </button>
+                    <button class="color-btn paint-blob" data-color="#823A84" data-name="Purple" data-target="color1" style="background-color: #823A84;">
+                        <span class="shine"></span>
+                    </button>
+                </div>
             </div>
-            <!-- Color options for first selection -->
-            <div class="color-options">
-                <button class="color-btn" data-color="#FF361C" data-target="color1" style="background-color: #FF361C;"></button>
-                <button class="color-btn" data-color="#1F4F99" data-target="color1" style="background-color: #1F4F99;"></button>
-                <button class="color-btn" data-color="#FEFF01" data-target="color1" style="background-color: #FEFF01;"></button>
-                <button class="color-btn" data-color="#823A84" data-target="color1" style="background-color: #823A84;"></button>
-                <button class="color-btn" data-color="#FF851E" data-target="color1" style="background-color: #FF851E;"></button>
-                <button class="color-btn" data-color="#2A892D" data-target="color1" style="background-color: #2A892D;"></button>
-            </div>
-        </div>
 
-        <!-- SELECT COLOR 2-->
-
-        <!-- Section for selecting the second color -->
-        <div class="color-section">
-            <h2>Select Second Color</h2>
-            <!-- Container to display the selected color -->
-            <div id="color2-display" class="color-display">
-                <p>No color selected</p>
+            <!-- PALETTE AREA -->
+            <div class="palette-area">
+                <div class="palette-icon">🎨</div>
+                <p>Mix on palette</p>
             </div>
-            <!-- Color options for second selection -->
-            <div class="color-options">
-                <button class="color-btn" data-color="#FF361C" data-target="color2" style="background-color: #FF361C;"></button>
-                <button class="color-btn" data-color="#1F4F99" data-target="color2" style="background-color: #1F4F99;"></button>
-                <button class="color-btn" data-color="#FEFF01" data-target="color2" style="background-color: #FEFF01;"></button>
-                <button class="color-btn" data-color="#823A84" data-target="color2" style="background-color: #823A84;"></button>
-                <button class="color-btn" data-color="#FF851E" data-target="color2" style="background-color: #FF851E;"></button>
-                <button class="color-btn" data-color="#2A892D" data-target="color2" style="background-color: #2A892D;"></button>
+
+            <!-- SELECT COLOR 2-->
+            <div class="color-section">
+                <h2>Select Second Color</h2>
+                <div id="color2-display" class="color-display">
+                    <p>No color selected</p>
+                </div>
+                <div class="color-options circular">
+                    <button class="color-btn paint-blob" data-color="#FF361C" data-name="Red" data-target="color2" style="background-color: #FF361C;">
+                        <span class="shine"></span>
+                    </button>
+                    <button class="color-btn paint-blob" data-color="#FF851E" data-name="Orange" data-target="color2" style="background-color: #FF851E;">
+                        <span class="shine"></span>
+                    </button>
+                    <button class="color-btn paint-blob" data-color="#FEFF01" data-name="Yellow" data-target="color2" style="background-color: #FEFF01;">
+                        <span class="shine"></span>
+                    </button>
+                    <button class="color-btn paint-blob" data-color="#2A892D" data-name="Green" data-target="color2" style="background-color: #2A892D;">
+                        <span class="shine"></span>
+                    </button>
+                    <button class="color-btn paint-blob" data-color="#1F4F99" data-name="Blue" data-target="color2" style="background-color: #1F4F99;">
+                        <span class="shine"></span>
+                    </button>
+                    <button class="color-btn paint-blob" data-color="#823A84" data-name="Purple" data-target="color2" style="background-color: #823A84;">
+                        <span class="shine"></span>
+                    </button>
+                </div>
             </div>
         </div>
 

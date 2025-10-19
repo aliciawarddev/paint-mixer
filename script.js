@@ -49,12 +49,19 @@ const mixingResults = {
 // COLOR SELECTION - EVENT LISTENERS
 // ============================================
 
-// REPLACE the existing forEach block with:
+// Color button click handlers with animation
 document.querySelectorAll('.color-btn').forEach(btn => {
     btn.addEventListener('click', function() {
-        // Get the color and which slot it's for from the button
         const color = this.dataset.color;
         const target = this.dataset.target;
+
+        // Remove selected class from other buttons in same section
+        document.querySelectorAll(`[data-target="${target}"]`).forEach(b => {
+            b.classList.remove('selected');
+        });
+
+        // Add selected class to clicked button
+        this.classList.add('selected');
 
         // Store the color and update the display
         selected[target] = color;
@@ -78,11 +85,20 @@ document.getElementById('mix-btn').addEventListener('click', function() {
         return;
     }
 
-    // Mix the colors and display the result
+    // Mix the colors and display the result with animation
     const mixed = getMixedColor(selected.color1, selected.color2);
-    document.getElementById('result-display').style.backgroundColor = mixed;
-    document.getElementById('result-display').innerHTML ='';
-    document.getElementById('result-hex').textContent = `Hex Code: ${mixed}`;
+    const resultDisplay = document.getElementById('result-display');
+    
+    // Remove any existing animation classes
+    resultDisplay.className = 'result-display';
+    
+    // Trigger animation (choose one: swirl, blend, fade-in, grow, or pour)
+    setTimeout(() => {
+        resultDisplay.classList.add('blend'); // Change to: swirl, fade-in, grow, or pour
+        resultDisplay.style.backgroundColor = mixed;
+        resultDisplay.innerHTML = '';
+        document.getElementById('result-hex').textContent = `Hex Code: ${mixed}`;
+    }, 10);
 });
 
 // Reset button - clears everything back to start
@@ -91,14 +107,21 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     selected.color1 = null;
     selected.color2 = null;
 
+    // Remove selected class from all buttons
+    document.querySelectorAll('.color-btn').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+
     // Reset all displays to original state
     ['color1', 'color2'].forEach(id => {
         document.getElementById(`${id}-display`).style.backgroundColor = '#f9f9f9';
         document.getElementById(`${id}-display`).innerHTML = '<p>No color selected</p>';
     });
 
-    document.getElementById('result-display').style.backgroundColor = '#f9f9f9';
-    document.getElementById('result-display').innerHTML = '<p>Select two colors and click "Mix Colors!"</p>';
+    const resultDisplay = document.getElementById('result-display');
+    resultDisplay.className = 'result-display'; // Remove animation classes
+    resultDisplay.style.backgroundColor = '#f9f9f9';
+    resultDisplay.innerHTML = '<p>Select two colors and click "Mix Colors!"</p>';
     document.getElementById('result-hex').textContent = '';
 
     // Re-enable all color buttons
@@ -147,6 +170,7 @@ function generateNewTarget() {
 // ============================================
 // GAME MODE - CHECK ANSWER FUNCTIONALITY
 // ============================================
+
 // Check answer button - validates user's color mix against target
 document.getElementById('check-btn').addEventListener('click', function() {
     // Ensure both colors are selected
@@ -157,11 +181,18 @@ document.getElementById('check-btn').addEventListener('click', function() {
 
     // Get the mixed color result
     const mixed = getMixedColor(selected.color1, selected.color2);
+    const resultDisplay = document.getElementById('result-display');
     
-    // Display the mixed result
-    document.getElementById('result-display').style.backgroundColor = mixed;
-    document.getElementById('result-display').innerHTML = '';
-    document.getElementById('result-hex').textContent = `Hex Code: ${mixed}`;
+    // Remove any existing animation classes
+    resultDisplay.className = 'result-display';
+    
+    // Trigger animation
+    setTimeout(() => {
+        resultDisplay.classList.add('blend'); // Change to: swirl, fade-in, grow, or pour
+        resultDisplay.style.backgroundColor = mixed;
+        resultDisplay.innerHTML = '';
+        document.getElementById('result-hex').textContent = `Hex Code: ${mixed}`;
+    }, 10);
 
     // Check if answer is correct and provide feedback
     const feedback = document.getElementById('feedback');
@@ -187,17 +218,27 @@ document.getElementById('check-btn').addEventListener('click', function() {
 // ============================================
 // UTILITY FUNCTIONS
 // ============================================
+
 // Helper function to reset color selections
 function resetSelections() {
     // Clear stored color values
     selected.color1 = null;
     selected.color2 = null;
     
+    // Remove selected class from all buttons
+    document.querySelectorAll('.color-btn').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    
     // Reset display areas to default state
     ['color1', 'color2'].forEach(id => {
         document.getElementById(`${id}-display`).style.backgroundColor = '#f9f9f9';
         document.getElementById(`${id}-display`).innerHTML = '<p>No color selected</p>';
     });
+    
+    const resultDisplay = document.getElementById('result-display');
+    resultDisplay.className = 'result-display';
+    resultDisplay.style.backgroundColor = '#f9f9f9';
 }
 
 // Function to get the mixed color from pre-stored results
@@ -271,4 +312,3 @@ function updateAvailableColors(targetSection, selectedColor) {
         }
     });
 }
-
