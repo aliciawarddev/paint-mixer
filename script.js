@@ -3,7 +3,7 @@
 // ============================================
 
 // Object to store both selected colors
-const selected = {color1: null, color2:null};
+const selected = {color1: null, color2: null};
 
 // Game state to track mode, target color, and score
 const gameState = {
@@ -46,6 +46,25 @@ const mixingResults = {
 };
 
 // ============================================
+// COLOR NAMES MAPPING
+// ============================================
+
+const colorNames = {
+    '#FF361C': 'Red',
+    '#1F4F99': 'Blue',
+    '#FEFF01': 'Yellow',
+    '#823A84': 'Purple',
+    '#FF851E': 'Orange',
+    '#2A892D': 'Green',
+    '#E01F34': 'Dark Red',
+    '#FE531B': 'Red-Orange',
+    '#0173B1': 'Blue-Green',
+    '#3D317B': 'Blue-Purple',
+    '#AEB71E': 'Yellow-Green',
+    '#FDA230': 'Yellow-Orange'
+};
+
+// ============================================
 // COLOR SELECTION - EVENT LISTENERS
 // ============================================
 
@@ -63,10 +82,8 @@ document.querySelectorAll('.color-btn').forEach(btn => {
         // Add selected class to clicked button
         this.classList.add('selected');
 
-        // Store the color and update the display
+        // Store the color
         selected[target] = color;
-        document.getElementById(`${target}-display`).style.backgroundColor = color;
-        document.getElementById(`${target}-display`).innerHTML = '';
         
         // Update available colors in the other section
         updateAvailableColors(target, color);
@@ -92,16 +109,16 @@ document.getElementById('mix-btn').addEventListener('click', function() {
     // Remove any existing animation classes
     resultDisplay.className = 'result-display';
     
-    // Trigger animation (choose one: swirl, blend, fade-in, grow, or pour)
+    // Trigger animation
     setTimeout(() => {
-        resultDisplay.classList.add('blend'); // Change to: swirl, fade-in, grow, or pour
+        resultDisplay.classList.add('blend');
         resultDisplay.style.backgroundColor = mixed;
         resultDisplay.innerHTML = '';
-        document.getElementById('result-hex').textContent = `Hex Code: ${mixed}`;
+        document.getElementById('result-hex').textContent = colorNames[mixed] || 'Unknown Color';
     }, 10);
 });
 
-// Reset button - clears everything back to start
+// Reset button - clears everything back to start state
 document.getElementById('reset-btn').addEventListener('click', function() {
     // Clear stored colors
     selected.color1 = null;
@@ -110,26 +127,19 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     // Remove selected class from all buttons
     document.querySelectorAll('.color-btn').forEach(btn => {
         btn.classList.remove('selected');
+        btn.disabled = false;
     });
 
-    // Reset all displays to original state
-    ['color1', 'color2'].forEach(id => {
-        document.getElementById(`${id}-display`).style.backgroundColor = '#f9f9f9';
-        document.getElementById(`${id}-display`).innerHTML = '<p>No color selected</p>';
-    });
-
+    // Reset result display
     const resultDisplay = document.getElementById('result-display');
-    resultDisplay.className = 'result-display'; // Remove animation classes
-    resultDisplay.style.backgroundColor = '#f9f9f9';
+    resultDisplay.className = 'result-display';
+    resultDisplay.style.backgroundColor = '#ffffff';
     resultDisplay.innerHTML = '<p>Select two colors and click "Mix Colors!"</p>';
     document.getElementById('result-hex').textContent = '';
 
-    // Re-enable all color buttons
-    document.querySelectorAll('.color-btn').forEach(btn => {
-        btn.disabled = false;
-        btn.style.opacity = '1';
-        btn.style.cursor = 'pointer';
-    });
+    // Reset feedback message
+    document.getElementById('feedback').textContent = '';
+    document.getElementById('feedback').className = 'feedback';
 });
 
 // ============================================
@@ -151,6 +161,23 @@ function setMode(mode) {
     document.getElementById('mix-btn').style.display = isPractice ? 'block' : 'none';
     document.getElementById('check-btn').style.display = isPractice ? 'none' : 'block';
     document.getElementById('feedback').textContent = '';
+
+    // Reset selections when switching modes
+    selected.color1 = null;
+    selected.color2 = null;
+    
+    // Remove selected class from all buttons
+    document.querySelectorAll('.color-btn').forEach(btn => {
+        btn.classList.remove('selected');
+        btn.disabled = false;
+    });
+
+    // Reset result display
+    const resultDisplay = document.getElementById('result-display');
+    resultDisplay.className = 'result-display';
+    resultDisplay.style.backgroundColor = '#ffffff';
+    resultDisplay.innerHTML = '<p>Select two colors and click "Mix Colors!"</p>';
+    document.getElementById('result-hex').textContent = '';
 
     if (!isPractice) {
         gameState.score = 0;
@@ -188,10 +215,10 @@ document.getElementById('check-btn').addEventListener('click', function() {
     
     // Trigger animation
     setTimeout(() => {
-        resultDisplay.classList.add('blend'); // Change to: swirl, fade-in, grow, or pour
+        resultDisplay.classList.add('blend');
         resultDisplay.style.backgroundColor = mixed;
         resultDisplay.innerHTML = '';
-        document.getElementById('result-hex').textContent = `Hex Code: ${mixed}`;
+        document.getElementById('result-hex').textContent = colorNames[mixed] || 'Unknown Color';
     }, 10);
 
     // Check if answer is correct and provide feedback
@@ -228,17 +255,13 @@ function resetSelections() {
     // Remove selected class from all buttons
     document.querySelectorAll('.color-btn').forEach(btn => {
         btn.classList.remove('selected');
-    });
-    
-    // Reset display areas to default state
-    ['color1', 'color2'].forEach(id => {
-        document.getElementById(`${id}-display`).style.backgroundColor = '#f9f9f9';
-        document.getElementById(`${id}-display`).innerHTML = '<p>No color selected</p>';
+        btn.disabled = false;
     });
     
     const resultDisplay = document.getElementById('result-display');
     resultDisplay.className = 'result-display';
-    resultDisplay.style.backgroundColor = '#f9f9f9';
+    resultDisplay.style.backgroundColor = '#ffffff';
+    resultDisplay.innerHTML = '';
 }
 
 // Function to get the mixed color from pre-stored results
@@ -263,13 +286,17 @@ function getMixedColor(color1, color2) {
     }
 
     // Fallback (shouldn't happen if all combinations are defined)
-    return null; // Return null for invalid combinations
+    return null;
 }
 
 // Function to update which color buttons are available based on selection
 function updateAvailableColors(targetSection, selectedColor) {
     // Don't restrict colors in game mode - keep the challenge!
     if (gameState.mode === 'game') {
+        // Re-enable all buttons in game mode
+        document.querySelectorAll('.color-btn').forEach(btn => {
+            btn.disabled = false;
+        });
         return;
     }
     
@@ -281,8 +308,6 @@ function updateAvailableColors(targetSection, selectedColor) {
     if (!selectedColor) {
         buttons.forEach(btn => {
             btn.disabled = false;
-            btn.style.opacity = '1';
-            btn.style.cursor = 'pointer';
         });
         return;
     }
@@ -303,12 +328,8 @@ function updateAvailableColors(targetSection, selectedColor) {
         const color = btn.dataset.color;
         if (validColors.has(color)) {
             btn.disabled = false;
-            btn.style.opacity = '1';
-            btn.style.cursor = 'pointer';
         } else {
             btn.disabled = true;
-            btn.style.opacity = '0.3';
-            btn.style.cursor = 'not-allowed';
         }
     });
 }

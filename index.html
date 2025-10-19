@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paint Mixer App</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Google fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <!-- Main container for the entire app -->
     <div class="container">
@@ -25,14 +30,11 @@
             <p id="score-display">Score: 0</p>
         </div>
 
-        <!-- Color selection container with palette -->
+        <!-- UPDATED: Color selection container with mix button in center -->
         <div class="color-selection-container">
             <!-- SELECT COLOR 1-->
             <div class="color-section">
-                <h2>Select First Color</h2>
-                <div id="color1-display" class="color-display">
-                    <p>No color selected</p>
-                </div>
+                <h2>First Color</h2>
                 <div class="color-options circular">
                     <button class="color-btn paint-blob" data-color="#FF361C" data-name="Red" data-target="color1" style="background-color: #FF361C;">
                         <span class="shine"></span>
@@ -55,18 +57,15 @@
                 </div>
             </div>
 
-            <!-- PALETTE AREA -->
-            <div class="palette-area">
-                <div class="palette-icon">🎨</div>
-                <p>Mix on palette</p>
+            <!-- MIX BUTTON IN CENTER -->
+            <div class="center-action">
+                <button id="mix-btn" class="action-btn center-btn">Mix Colors</button>
+                <button id="check-btn" class="action-btn center-btn" style="display: none;">Check Answer</button>
             </div>
 
             <!-- SELECT COLOR 2-->
             <div class="color-section">
-                <h2>Select Second Color</h2>
-                <div id="color2-display" class="color-display">
-                    <p>No color selected</p>
-                </div>
+                <h2>Second Color</h2>
                 <div class="color-options circular">
                     <button class="color-btn paint-blob" data-color="#FF361C" data-name="Red" data-target="color2" style="background-color: #FF361C;">
                         <span class="shine"></span>
@@ -89,14 +88,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- MIX COLORS -->
-
-        <!-- Button to trigger the mixing action -->
-        <button id="mix-btn" class="action-btn">Mix Colors!</button>
-        
-        <!-- Check button (only visible in game mode) -->
-        <button id="check-btn" class="action-btn" style="display: none;">Check Answer</button>
         
         <!-- Feedback message (only visible in game mode) -->
         <p id="feedback" class="feedback"></p>
@@ -111,7 +102,7 @@
         </div>
 
         <!-- Button to reset all selections -->
-        <button id="reset-btn" class="action-btn secondary">Reset</button>
+        <button id="reset-btn" class="action-btn reset">Reset</button>
     </div>
 
     <script src="script.js"></script>
