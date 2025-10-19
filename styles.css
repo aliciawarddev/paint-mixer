@@ -1,24 +1,50 @@
-/* CUSTOM VARIABLES */
+/* ============================================
+   CUSTOM VARIABLES - SIMPLIFIED COLOR PALETTE
+   ============================================ */
 :root {
-    --bg-mint: #E8F5E9;
-    --bg-teal: #B2DFDB;
-    --accent-teal: #00897B;
-    --accent-coral: #FF6F61;
+    /* Background Colors */
+    --bg-gradient-start: #E8F5E9;
+    --bg-gradient-end: #B2DFDB;
+    --bg-white: #FFFFFF;
+    --bg-light: #F5F5F5;
+    
+    /* Teal Palette */
+    --teal: #00897B;
+    --teal-dark: #00695C;
+    --teal-light: #4DB6AC;
+    
+    /* Accent Colors */
+    --warm: #FFB74D;
+    --warm-hover: #FFA726;
+    --coral: #FF6F61;
+    --coral-hover: #FF5543;
+    
+    /* Text & Borders */
     --text: #2C3E50;
-    --bg-light: #FAFAFA;
+    --text-muted: #999999;
+    --border: #37474F;
+    
+    /* Paint Blob Colors */
+    --color-red: #FF361C;
+    --color-blue: #1F4F99;
+    --color-yellow: #FEFF01;
+    --color-purple: #823A84;
+    --color-orange: #FF851E;
+    --color-green: #2A892D;
 }
 
-/* Reset default browser styles */
+/* ============================================
+   RESET & BASE STYLES
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body styling - sets up the page background and font */
 body {
     font-family: 'DM Sans', sans-serif;
-    background: linear-gradient(135deg, var(--bg-mint) 0%, var(--bg-teal) 100%);
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -26,80 +52,144 @@ body {
     padding: 20px;
 }
 
-/* Main container - centers and styles the app content */
+/* ============================================
+   CONTAINER
+   ============================================ */
 .container {
-    background-color: white;
-    border-radius: 20px;
-    padding: 40px;
-    max-width: 900px;
+    background-color: var(--bg-white);
+    border-radius: 22px;
+    padding: 50px 45px;
+    max-width: 920px;
     width: 100%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.15);
 }
 
-/* Main title styling */
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
 h1 {
     font-family: 'Outfit', sans-serif;
     font-weight: 600;
     text-align: center;
     color: var(--text);
-    margin-bottom: 40px;
-    font-size: 2.5em;
+    margin-bottom: 45px;
+    font-size: 2.8em;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Section titles styling */
 h2 {
     font-family: 'Outfit', sans-serif;
     font-weight: 500;
     color: var(--text);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-size: 1.1em;
     text-align: center;
+    letter-spacing: 0.3px;
 }
 
-/* Side-by-side color selection container */
+/* ============================================
+   MODE TOGGLE
+   ============================================ */
+.mode-toggle {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 45px;
+    justify-content: center;
+}
+
+.mode-btn {
+    font-family: 'Outfit', sans-serif;
+    padding: 11px 26px;
+    font-size: 0.95em;
+    font-weight: 600;
+    border: 2px solid var(--teal);
+    border-radius: 8px;
+    background-color: var(--bg-white);
+    color: var(--teal);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mode-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 137, 123, 0.2);
+    border-color: var(--teal-dark);
+}
+
+.mode-btn:active {
+    transform: translateY(0);
+}
+
+.mode-btn.active {
+    background-color: var(--teal-dark);
+    border-color: var(--teal-dark);
+    color: var(--bg-white);
+    box-shadow: 0 3px 10px rgba(0, 105, 92, 0.25);
+}
+
+.mode-btn.active:hover {
+    box-shadow: 0 5px 15px rgba(0, 105, 92, 0.35);
+}
+
+/* ============================================
+   TARGET SECTION (GAME MODE)
+   ============================================ */
+.target-section {
+    text-align: center;
+    margin: 0 auto 35px auto;
+    padding: 28px;
+    background: linear-gradient(135deg, var(--bg-white) 0%, var(--teal-light) 5%, #F8FFFE 100%);
+    border-radius: 14px;
+    border: 2px solid var(--teal);
+    box-shadow: 0 3px 12px rgba(0, 137, 123, 0.15);
+    max-width: 20rem;
+}
+
+.target-display {
+    width: 110px;
+    height: 110px;
+    margin: 18px auto;
+    border: 3px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+#score-display {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--warm);
+    margin-top: 12px;
+    text-shadow: 0 1px 2px rgba(255, 183, 77, 0.2);
+}
+
+/* ============================================
+   COLOR SELECTION CONTAINER
+   ============================================ */
 .color-selection-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 30px;
-    margin-bottom: 40px;
-    margin-top: 50px;
+    gap: 40px;
+    margin-bottom: 45px;
+    margin-top: 10px;
 }
 
-/* Color selection section - groups each color picker area */
 .color-section {
     flex: 1;
     margin-bottom: 0;
 }
 
-/* Display box for selected colors */
-.color-display {
-    width: 100%;
-    height: 80px;
-    border: 3px solid #ddd;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 15px;
-    background-color: #f9f9f9;
-}
-
-/* Text inside color display when no color is selected */
-.color-display p {
-    color: #999;
-    font-style: italic;
-}
-
-/* Circular arrangement for paint blobs */
+/* ============================================
+   PAINT BLOBS - CIRCULAR ARRANGEMENT
+   ============================================ */
 .color-options.circular {
     position: relative;
     width: 220px;
     height: 220px;
-    margin: 20px auto;
+    margin: 30px auto;
 }
 
-/* Paint blob styling */
 .color-btn.paint-blob {
     position: absolute;
     width: 60px;
@@ -110,53 +200,44 @@ h2 {
     transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    /* Center the transform origin for perfect scaling */
     left: 50%;
     top: 50%;
 }
 
-/* Position blobs in perfect circle - using radius of 80px from center */
-/* Each blob is rotated around center and translated outward */
-
-.color-btn.paint-blob:nth-child(1) { /* Red - 0° (top) */
+/* Position blobs in perfect circle - 80px radius */
+.color-btn.paint-blob:nth-child(1) { /* Red - 0° */
     transform: translate(-50%, -50%) translate(0, -80px);
 }
 
-.color-btn.paint-blob:nth-child(2) { /* Orange - 60° (top right) */
+.color-btn.paint-blob:nth-child(2) { /* Orange - 60° */
     transform: translate(-50%, -50%) rotate(60deg) translate(0, -80px) rotate(-60deg);
 }
 
-.color-btn.paint-blob:nth-child(3) { /* Yellow - 120° (bottom right) */
+.color-btn.paint-blob:nth-child(3) { /* Yellow - 120° */
     transform: translate(-50%, -50%) rotate(120deg) translate(0, -80px) rotate(-120deg);
 }
 
-.color-btn.paint-blob:nth-child(4) { /* Green - 180° (bottom) */
+.color-btn.paint-blob:nth-child(4) { /* Green - 180° */
     transform: translate(-50%, -50%) translate(0, 80px);
 }
 
-.color-btn.paint-blob:nth-child(5) { /* Blue - 240° (bottom left) */
+.color-btn.paint-blob:nth-child(5) { /* Blue - 240° */
     transform: translate(-50%, -50%) rotate(240deg) translate(0, -80px) rotate(-240deg);
 }
 
-.color-btn.paint-blob:nth-child(6) { /* Purple - 300° (top left) */
+.color-btn.paint-blob:nth-child(6) { /* Purple - 300° */
     transform: translate(-50%, -50%) rotate(300deg) translate(0, -80px) rotate(-300deg);
 }
 
-/* Shine effect on paint blobs */
-.shine {
-    position: absolute;
-    top: 15%;
-    left: 20%;
-    width: 25px;
-    height: 25px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    filter: blur(8px);
-    pointer-events: none;
+/* ============================================
+   PAINT BLOB STATES - HOVER
+   ============================================ */
+.color-btn.paint-blob:hover {
+    box-shadow: 0 4px 16px rgba(77, 182, 172, 0.4);
+    filter: brightness(1.05);
+    z-index: 5;
 }
 
-/* HOVER STATE */
-/* UPDATED: Consistent hover effect - maintain circle position */
 .color-btn.paint-blob:nth-child(1):hover {
     transform: translate(-50%, -50%) translate(0, -80px) scale(1.08);
 }
@@ -181,7 +262,14 @@ h2 {
     transform: translate(-50%, -50%) rotate(300deg) translate(0, -80px) rotate(-300deg) scale(1.08);
 }
 
-/* UPDATED: Consistent selected state - maintain circle position */
+/* ============================================
+   PAINT BLOB STATES - SELECTED
+   ============================================ */
+.color-btn.paint-blob.selected {
+    box-shadow: 0 0 0 3px var(--teal-dark), 0 4px 20px rgba(0, 105, 92, 0.35);
+    z-index: 10;
+}
+
 .color-btn.paint-blob:nth-child(1).selected {
     transform: translate(-50%, -50%) translate(0, -80px) scale(1.15);
 }
@@ -206,227 +294,9 @@ h2 {
     transform: translate(-50%, -50%) rotate(300deg) translate(0, -80px) rotate(-300deg) scale(1.15);
 }
 
-/* Color name display - appears below blob on hover */
-.color-btn.paint-blob::after {
-    content: attr(data-name);
-    position: absolute;
-    bottom: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.8em;
-    font-weight: bold;
-    color: #555;
-    white-space: nowrap;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.color-btn.paint-blob:hover::after,
-.color-btn.paint-blob.selected::after {
-    opacity: 1;
-}
-
-/* NEW: Center action area for mix button */
-.center-action {
-    flex: 0 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Primary action button (Mix button) */
-.action-btn {
-    font-family: 'Outfit', sans-serif;
-    width: 100%;
-    max-width: 300px;
-    margin: 10px auto;
-    padding: 12px 24px;
-    font-size: 1em;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
-    display: block;
-    background-color: #00897B;
-    color: white;
-    box-shadow: 0 2px 8px rgba(0, 137, 123, 0.2);
-}
-
-/* NEW: Center button specific styling */
-.action-btn.center-btn {
-    max-width: 140px;
-    padding: 14px 20px;
-    font-size: 0.95em;
-}
-
-/* Primary button hover effect */
-.action-btn:hover {
-    background-color: #00796B;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 137, 123, 0.3);
-}
-
-.action-btn:active {
-    transform: translateY(0);
-}
-
-/* Secondary action button (Reset button) */
-.action-btn.reset {
-    background-color: #FF6F61;
-    box-shadow: 0 2px 8px rgba(255, 111, 97, 0.2);
-    max-width: 20rem;
-}
-
-.action-btn.reset:hover {
-    background-color: #FF5543;
-    box-shadow: 0 4px 12px rgba(255, 111, 97, 0.3);
-}
-
-/* Active state */
-.action-btn:active {
-    transform: translateY(0);
-}
-
-/* Result section styling */
-.result-section {
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-/* Result display box - shows the mixed color - larger and more prominent */
-.result-display {
-    width: 100%;
-    max-width: 20rem;
-    height: 150px;
-    border: 2px solid #00897B;
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto;
-    background-color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 137, 123, 0.1);
-}
-
-/* Text inside result display when no mix has occurred */
-.result-display p {
-    color: #999;
-    font-style: italic;
-}
-
-/* Hex code display styling */
-#result-hex {
-    font-weight: bold;
-    color: #555;
-    font-size: 0.8em;
-}
-
-/* Animation classes for result display */
-/* OPTION 1: Swirl animation */
-.result-display.blend {
-    animation: subtleBlend 0.5s ease-out;
-}
-
-@keyframes subtleBlend {
-    0% {
-        opacity: 0.7;
-        transform: scale(0.98);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* Mode toggle container */
-.mode-toggle {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 40px;
-    justify-content: center;
-}
-
-/* Mode toggle buttons */
-.mode-btn {
-    font-family: 'Outfit', sans-serif;
-    padding: 10px 24px;
-    font-size: 0.95em;
-    font-weight: 600;
-    border: 2px solid #00897B;
-    border-radius: 8px;
-    background-color: white;
-    color: #00897B;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-/* Active mode button */
-.mode-btn.active {
-    background-color: #00897B;
-    color: white;
-    box-shadow: 0 2px 8px rgba(0, 137, 123, 0.2);
-}
-
-/* Mode button hover */
-.mode-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 137, 123, 0.15);
-}
-
-.mode-btn.active:hover {
-    box-shadow: 0 4px 12px rgba(0, 137, 123, 0.3);
-}
-
-/* Target section styling */
-.target-section {
-    text-align: center;
-    margin: 0 auto 30px auto;
-    padding: 24px;
-    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
-    border-radius: 12px;
-    border: 2px solid #00897B;
-    box-shadow: 0 2px 8px rgba(0, 137, 123, 0.1);
-    max-width: 20rem;
-}
-
-/* Target color display */
-.target-display {
-    width: 100px;
-    height: 100px;
-    margin: 15px auto;
-    border: 2px solid #2C3E50;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Score display */
-#score-display {
-    font-size: 1.2em;
-    font-weight: 600;
-    color: #00897B;
-    margin-top: 10px;
-}
-
-/* Feedback message */
-.feedback {
-    text-align: center;
-    font-size: 1.2em;
-    font-weight: bold;
-    margin: 15px 0;
-    min-height: 30px;
-}
-
-.feedback.correct {
-    color: #00897B;
-}
-
-.feedback.incorrect {
-    color: #FF6F61;
-}
-
-/* UPDATED: Disabled color button styling for practice mode */
+/* ============================================
+   PAINT BLOB STATES - DISABLED
+   ============================================ */
 .color-btn:disabled {
     opacity: 0.3;
     cursor: not-allowed;
@@ -438,7 +308,6 @@ h2 {
     filter: grayscale(50%) brightness(1);
 }
 
-/* DISABLED HOVER - MAINTAIN POSITION */
 .color-btn.paint-blob:nth-child(1):disabled:hover {
     transform: translate(-50%, -50%) translate(0, -80px);
 }
@@ -463,10 +332,187 @@ h2 {
     transform: translate(-50%, -50%) rotate(300deg) translate(0, -80px) rotate(-300deg);
 }
 
-/* MOBILE RESPONSIVENESS */
+/* ============================================
+   PAINT BLOB - COLOR NAME LABEL
+   ============================================ */
+.color-btn.paint-blob::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8em;
+    font-weight: bold;
+    color: var(--text);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.color-btn.paint-blob:hover::after,
+.color-btn.paint-blob.selected::after {
+    opacity: 1;
+}
+
+/* Hide shine element if present in HTML */
+.shine {
+    display: none;
+}
+
+/* ============================================
+   CENTER ACTION BUTTONS
+   ============================================ */
+.center-action {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-btn {
+    font-family: 'Outfit', sans-serif;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px auto;
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    display: block;
+    background-color: var(--teal);
+    color: var(--bg-white);
+    box-shadow: 0 2px 8px rgba(0, 137, 123, 0.2);
+}
+
+.action-btn:hover {
+    background-color: var(--teal-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 105, 92, 0.3);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+.action-btn.center-btn {
+    max-width: 145px;
+    padding: 15px 22px;
+    font-size: 0.95em;
+    background-color: var(--warm);
+    box-shadow: 0 3px 10px rgba(255, 183, 77, 0.3);
+}
+
+.action-btn.center-btn:hover {
+    background-color: var(--warm-hover);
+    box-shadow: 0 5px 15px rgba(255, 183, 77, 0.4);
+}
+
+/* ============================================
+   RESULT SECTION
+   ============================================ */
+.result-section {
+    margin-bottom: 45px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.result-display {
+    width: 100%;
+    max-width: 20rem;
+    height: 160px;
+    border: 3px solid var(--border);
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px auto 20px auto;
+    background-color: var(--bg-white);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.result-display p {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.result-display.blend {
+    animation: subtleBlend 0.5s ease-out;
+}
+
+@keyframes subtleBlend {
+    0% {
+        opacity: 0.7;
+        transform: scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#result-hex {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    color: var(--text);
+    font-size: 1.1em;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+}
+
+/* ============================================
+   FEEDBACK MESSAGE
+   ============================================ */
+.feedback {
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 20px 0 25px 0;
+    min-height: 35px;
+}
+
+.feedback.correct {
+    color: var(--teal-dark);
+}
+
+.feedback.incorrect {
+    color: var(--coral);
+}
+
+/* ============================================
+   RESET BUTTON
+   ============================================ */
+.action-btn.reset {
+    background-color: var(--coral);
+    box-shadow: 0 3px 10px rgba(255, 111, 97, 0.25);
+    max-width: 20rem;
+    margin-top: 5px;
+}
+
+.action-btn.reset:hover {
+    background-color: var(--coral-hover);
+    box-shadow: 0 5px 15px rgba(255, 111, 97, 0.35);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
 @media (max-width: 768px) {
+    .container {
+        padding: 30px 25px;
+    }
+    
+    h1 {
+        font-size: 2.2em;
+        margin-bottom: 35px;
+    }
+    
     .color-selection-container {
         flex-direction: column;
+        gap: 20px;
     }
     
     .center-action {
@@ -480,5 +526,16 @@ h2 {
     
     .color-section:last-child {
         order: 3;
+    }
+    
+    .color-options.circular {
+        width: 200px;
+        height: 200px;
+        margin: 20px auto;
+    }
+    
+    .color-btn.paint-blob {
+        width: 55px;
+        height: 55px;
     }
 }
