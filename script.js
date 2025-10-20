@@ -333,3 +333,12 @@ function updateAvailableColors(targetSection, selectedColor) {
         }
     });
 }
+
+// Toggle the slider position
+document.getElementById('game-mode-btn').addEventListener('click', function() {
+    document.querySelector('.mode-toggle').classList.add('game-mode-active');
+});
+
+document.getElementById('practice-mode-btn').addEventListener('click', function() {
+    document.querySelector('.mode-toggle').classList.remove('game-mode-active');
+});
