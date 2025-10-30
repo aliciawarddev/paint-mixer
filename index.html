@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paint Mixer App</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <!-- Google fonts -->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Add to <head> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -17,7 +21,7 @@
         <!-- App title -->
         <h1>Paint Mixer</h1>
 
-        <!-- Mode toggle buttons -->
+        <!-- MODE TOGGLE -->
         <div class="mode-toggle">
             <button id="practice-mode-btn" class="mode-btn active">Practice Mode</button>
             <button id="game-mode-btn" class="mode-btn">Game Mode</button>
@@ -102,8 +106,11 @@
         </div>
 
         <!-- Button to reset all selections -->
-        <button id="reset-btn" class="action-btn reset">Reset</button>
-    </div>
+         <div class="reset-section">
+            <button id="reset-btn" class="action-btn reset">Reset</button>
+         </div>
+        
+    </div><!-- container closing-->
 
     <script src="script.js"></script>
 </body>

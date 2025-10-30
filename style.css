@@ -1,0 +1,194 @@
+/* ============================================
+   ROOT VARIABLES
+   ============================================ */
+
+   /* Paint Blob Colours*/
+   :root {
+    --color-red: #FF361C;
+    --color-blue: #1F4F99;
+    --color-yellow: #FEFF01;
+    --color-purple: #823A84;
+    --color-orange: #FF851E;
+    --color-green: #2A892D;
+
+    /* Color Palette */
+    --bg-main: #F5F5F0;        /* Soft cream background */
+    --bg-card: #FFFFFF;        /* White for cards/panels */
+    --text-dark: #2C2C2C;      /* Dark gray for text */
+    --text-light: #6B6B6B;     /* Medium gray for secondary text */
+    --border: #D4D4D4;         /* Light gray for borders */
+    --accent-light: #4A90E2; 
+    --accent-dark: #3A7BC8;         /* Soft blue for accents/buttons */
+    --success: #5CB85C;        /* Green for success states */
+    --error: #D9534F;          /* Red for errors */
+    --shadow: rgba(0,0,0,0.1); /* Subtle shadows */
+   } 
+
+/* ============================================
+   RESET & BASE STYLES
+============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    color: var(--text-dark);
+}
+
+/* ============================================
+   CONTAINER
+============================================ */
+.container {
+    width: auto;
+    background-color: var(--bg-card);
+    padding: 4rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px var(--shadow);
+}
+
+/* ============================================
+   TYPOGRAPHY
+============================================ */
+h1 {
+    text-align: center;
+    color: var(--text-dark);
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-family: 'DM Sans', sans-serif;
+}
+
+h2 {
+    text-align: center;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* ============================================
+   MODE TOGGLE
+============================================ */
+.mode-toggle {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 0.75rem 0.5rem;
+    border: 3px solid var(--border);
+    background-color: var(--bg-card);
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    border-radius: 10px;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.04rem;
+}
+
+.mode-btn:hover {
+    background-color: var(--bg-main);
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+}
+
+.mode-btn.active {
+    background-color: var(--accent-light);
+    color: var(--bg-card);
+    border-color: var(--accent-dark);
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+}
+
+/* ============================================
+   ACTION BUTTONS
+============================================ */
+
+/* Action button */
+.action-btn {
+    flex: 1;
+    padding: 0.75rem 0.5rem;
+    border: 3px solid var(--accent-dark);
+    background-color: var(--accent-light);
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    border-radius: 10px;
+    color: var(--bg-card);
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.04rem;
+}
+
+/* ============================================
+   COLOR SECTION
+============================================ */
+.color-selection-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.color-section {
+    width: 18rem;
+    height: auto;
+    background-color: var(--bg-main);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.paint-blob {
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid var(--border);
+    cursor: pointer
+}
+
+/* ============================================
+  RESULT SECTION
+============================================ */
+.result-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 3rem;
+}
+
+/* ============================================
+   RESET SECTION
+============================================ */
+.reset-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
