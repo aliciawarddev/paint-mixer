@@ -177,7 +177,7 @@ function setMode(mode) {
     document.getElementById('target-section').style.display = isPractice ? 'none' : 'block';
     document.getElementById('feedback').textContent = '';
     document.getElementById('feedback').className = 'feedback';
-    document.getElementById('next-btn').style.display = 'none'; // Add this line
+    document.getElementById('next-section').style.display = 'flex'; // Change this line from 'next-btn' to 'next-section'
 
     // Reset selections when switching modes
     selected.color1 = null;
@@ -323,5 +323,5 @@ document.getElementById('next-btn').addEventListener('click', function() {
     resetSelections();
     document.getElementById('feedback').textContent = '';
     document.getElementById('feedback').className = 'feedback';
-    document.getElementById('next-btn').style.display = 'none';
+    document.getElementById('next-section').style.display = 'none'; // Change to 'next-section'
 });
