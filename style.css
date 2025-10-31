@@ -68,10 +68,10 @@ body {
 ============================================ */
 h1 {
     text-align: center;
-    color: var(--accent-dark);
+    color: var(--accent-darkest);
     font-size: 1.8rem;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 800;
     font-family: 'DM Sans', sans-serif;
     margin-bottom: 1rem;
     letter-spacing: 0.1rem;
