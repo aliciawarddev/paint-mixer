@@ -67,20 +67,35 @@ body {
 ============================================ */
 h1 {
     text-align: center;
-    color: var(--text-dark);
-    font-size: 3rem;
+    color: var(--accent-dark);
+    font-size: 2.5rem;
     text-transform: uppercase;
-    font-weight: 800;
+    font-weight: 700;
     font-family: 'DM Sans', sans-serif;
     margin-bottom: 2rem;
+    letter-spacing: 0.1rem;
 }
 
 h2 {
     text-align: center;
     color: var(--text-dark);
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     font-family: 'DM Sans', sans-serif;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02rem;
+}
+
+/* Button Text - inherits from button classes but ensure consistency */
+.mode-btn,
+.action-btn,
+.hint-btn,
+#mix-btn,
+#reset-btn {
+    color: var(--text-dark);                /* Default dark text */
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.04rem;
 }
 
 /* ============================================
@@ -118,14 +133,11 @@ h2 {
 .mode-btn {
     background-color: var(--bg-card);
     border: 2px solid var(--border);
-    color: var(--text-light);
+    color: var(--text-dark);
     padding: 0.75rem auto;
     cursor: pointer;
     font-size: 16px;
     transition: all 0.3s;
-    /* 
-    border-radius: 10px;
-    */ 
     font-weight: 600;
     font-family: 'DM Sans', sans-serif;
     font-size: 1.1rem;
@@ -144,8 +156,9 @@ h2 {
 /* Active state (selected)*/
 .mode-btn.active {
     background-color: var(--accent-light);
-    color: var(--text-dark);
+    color: var(--bg-card);
     cursor: default;
+
 }
 
 /* 
@@ -264,6 +277,7 @@ h2 {
     background-color: var(--accent-light);
     border: 2px solid var(--accent-medium);
     max-width: 25rem;
+    color: var(--bg-card);
 }
 
 #mix-btn:hover {
@@ -307,6 +321,7 @@ h2 {
     height: 2rem;
     cursor: pointer;
     transition: all 0.2s;
+    border: 2px solid var(--bg-card);
 }
 
 .paint-blob:hover {
@@ -315,6 +330,7 @@ h2 {
 
 .paint-blob.selected {
     transform: scale(1.15);
+    border: 2px solid var(--accent-medium);
 }
 
 .paint-blob:disabled {
@@ -381,7 +397,7 @@ h2 {
 }
 
 #result-hex {
-    font-size: 0.95rem;                          /* Larger - easier to read */
+    font-size: 1rem;                          /* Larger - easier to read */
     font-weight: 600;                            /* Bolder - more emphasis */
     color: var(--accent-dark);                   /* Teal - ties to brand */
     letter-spacing: 0.05rem;
@@ -416,6 +432,7 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--text-dark);
 }
 
 .feedback.correct {
