@@ -53,7 +53,7 @@ body {
 ============================================ */
 /* Card */
 .container {
-    width: 40rem;
+    width: 35rem;
     background-color: var(--bg-card);
     padding: 4rem;
     border-radius: 15px;
@@ -83,17 +83,23 @@ h2 {
 /* ============================================
    MODE TOGGLE
 ============================================ */
+/* Section */
 .mode-toggle {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
     align-items: center;
     justify-content: center;
     flex-direction: row;
+    max-width: 25rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 
 .mode-btn {
+    padding: 0.75rem auto;
     border: 2px solid var(--border);
     background-color: var(--bg-card);
     cursor: pointer;
@@ -105,9 +111,9 @@ h2 {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.1rem;
     letter-spacing: 0.04rem;
-    width: 11rem;
+    width: auto;
     height: 3rem;
-
+    flex: 1;
 }
 
 .mode-btn:hover {
@@ -195,25 +201,30 @@ h2 {
 .action-btn {
     flex: 1;
     padding: 0.75rem 0.5rem;
-    border: 3px solid var(--accent-dark);
-    background-color: var(--accent);
     cursor: pointer;
     font-size: 16px;
     transition: all 0.3s;
     border-radius: 10px;
-    color: var(--bg-card);
     font-weight: 600;
     font-family: 'DM Sans', sans-serif;
     font-size: 1.1rem;
     letter-spacing: 0.04rem;
     width: auto;
     min-width: 12rem;
+    max-width: 25rem;
 }
 
 .action-btn:hover {
     background-color: var(--accent-dark);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px var(--shadow);
+}
+
+/* Mix button */
+.mix-btn {
+    background-color: var(--accent);
+    border: 2px solid var(--accent-dark);
+    max-width: 30rem;
 }
 
 /* ============================================
@@ -230,7 +241,7 @@ h2 {
 
 .color-section {
     width: 100%;
-    max-width: 30rem;
+    max-width: 25rem;
     height: auto;
     background-color: var(--bg-section);
     border-radius: 10px;
@@ -247,18 +258,15 @@ h2 {
     border-radius: 50%;
     width: 2rem;
     height: 2rem;
-    border: 2px solid var(--border);
     cursor: pointer;
     transition: all 0.2s;
 }
 
 .paint-blob:hover {
     transform: scale(1.1);
-    border-color: var(--border-dark);
 }
 
 .paint-blob.selected {
-    border: 3px solid var(--border-dark);
     transform: scale(1.15);
 }
 
@@ -269,7 +277,7 @@ h2 {
 
 .color-options {
     display: flex;
-    gap: 0.75rem;
+    gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -292,6 +300,7 @@ h2 {
     max-width: 30rem;
     margin-left: auto;
     margin-right: auto;
+    max-width: 25rem;
 }
 
 .result-section h2 {
