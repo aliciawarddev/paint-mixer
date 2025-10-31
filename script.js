@@ -171,7 +171,7 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     // Reset result display
     const resultDisplay = document.getElementById('result-display');
     resultDisplay.className = 'result-display';
-    resultDisplay.style.backgroundColor = '#ffffff';
+    resultDisplay.style.backgroundColor = '';
     resultDisplay.innerHTML = '<p>Select two colors and click "Mix Colors!"</p>';
     document.getElementById('result-hex').textContent = '';
 
@@ -222,7 +222,7 @@ function setMode(mode) {
     // Reset result display
     const resultDisplay = document.getElementById('result-display');
     resultDisplay.className = 'result-display';
-    resultDisplay.style.backgroundColor = '#ffffff';
+    resultDisplay.style.backgroundColor = '';
     resultDisplay.innerHTML = '<p>Select two colors and click "Mix Colors!"</p>';
     document.getElementById('result-hex').textContent = '';
 
@@ -328,7 +328,7 @@ function resetSelections() {
     
     const resultDisplay = document.getElementById('result-display');
     resultDisplay.className = 'result-display';
-    resultDisplay.style.backgroundColor = '#ffffff';
+    resultDisplay.style.backgroundColor = '';
     resultDisplay.innerHTML = '<p>Select two colors and click "Mix Colors!"</p>';
     document.getElementById('result-hex').textContent = '';
 }
