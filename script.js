@@ -116,22 +116,30 @@ document.getElementById('mix-btn').addEventListener('click', function() {
         document.getElementById('result-hex').textContent = colorNames[mixed] || 'Unknown Color';
     }, 10);
 
-    // Game mode: check if answer is correct
-    if (gameState.mode === 'game') {
-        const feedback = document.getElementById('feedback');
-        if (mixed === gameState.targetColor) {
-            // Correct answer
-            feedback.textContent = '✓ Correct! Well done!';
-            feedback.className = 'feedback correct';
-            
-            // Show next button
-            document.getElementById('next-btn').style.display = 'block';
-        } else {
-            // Incorrect answer
-            feedback.textContent = '✗ Not quite! Try a different combination.';
-            feedback.className = 'feedback incorrect';
-        }
+// Game mode: check if answer is correct
+if (gameState.mode === 'game') {
+    const feedback = document.getElementById('feedback');
+    if (mixed === gameState.targetColor) {
+        // Correct answer
+        feedback.textContent = '✓ Correct! Well done!';
+        feedback.className = 'feedback correct';
+        
+        // Show next button
+        document.getElementById('next-btn').style.display = 'block';
+    } else {
+        // Incorrect answer
+        feedback.textContent = '✗ Not quite! Try a different combination.';
+        feedback.className = 'feedback incorrect';
+        
+        // Auto-reset after 2.5 seconds on incorrect answer
+        setTimeout(() => {
+            resetSelections();
+            feedback.textContent = '';
+            feedback.className = 'feedback';
+        }, 2500);
     }
+}
+
 });
 
 // Reset button - clears everything back to start state
