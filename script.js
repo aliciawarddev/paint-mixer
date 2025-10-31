@@ -262,6 +262,49 @@ document.getElementById('next-btn').addEventListener('click', function() {
     document.getElementById('next-section').style.display = 'none';
 });
 
+// Hint button - shows which colors to mix for the target
+document.getElementById('hint-btn').addEventListener('click', function() {
+    if (!gameState.targetColor) return;
+    
+    // Find which colors mix to make the target
+    let hintColors = [];
+    for (let combo in mixingResults) {
+        if (mixingResults[combo] === gameState.targetColor) {
+            hintColors = combo.split('-');
+            break;
+        }
+    }
+    
+    if (hintColors.length === 2) {
+        const color1Name = colorNames[hintColors[0]];
+        const color2Name = colorNames[hintColors[1]];
+        
+        // Create or update hint message element
+        let hintMessage = document.getElementById('hint-message');
+        if (!hintMessage) {
+            hintMessage = document.createElement('p');
+            hintMessage.id = 'hint-message';
+            hintMessage.className = 'feedback';
+            // Insert after the hint button
+            this.parentNode.insertBefore(hintMessage, this.nextSibling);
+        }
+        
+        hintMessage.textContent = `Hint: Try mixing ${color1Name} and ${color2Name}`;
+        hintMessage.style.color = '#666';
+        hintMessage.style.display = 'block';
+        
+        // Clear hint after 4 seconds
+        setTimeout(() => {
+            if (hintMessage.textContent.includes('Hint:')) {
+                hintMessage.textContent = '';
+                hintMessage.style.display = 'none';
+            }
+        }, 4000);
+    }
+});
+
+
+
 // ============================================
 // UTILITY FUNCTIONS
 // ============================================
