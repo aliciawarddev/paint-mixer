@@ -87,7 +87,6 @@ h2 {
     gap: 1rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
-
 }
 
 .mode-btn {
@@ -107,19 +106,14 @@ h2 {
 }
 
 .mode-btn:hover {
-    background-color: var(--bg-main);
-    font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1.1rem;
+    background-color: var(--bg-section);
+    border-color: var(--border-dark);
 }
 
 .mode-btn.active {
-    background-color: var(--accent-light);
+    background-color: var(--accent);
     color: var(--bg-card);
     border-color: var(--accent-dark);
-    font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1.1rem;
 }
 
 /* ============================================
@@ -131,7 +125,7 @@ h2 {
     flex: 1;
     padding: 0.75rem 0.5rem;
     border: 3px solid var(--accent-dark);
-    background-color: var(--accent-light);
+    background-color: var(--accent);
     cursor: pointer;
     font-size: 16px;
     transition: all 0.3s;
@@ -141,8 +135,8 @@ h2 {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.1rem;
     letter-spacing: 0.04rem;
-    width: auto;  /* Changed from 20rem */
-    min-width: 12rem;  /* Added */
+    width: auto;
+    min-width: 12rem;
 }
 
 .action-btn:hover {
@@ -164,10 +158,10 @@ h2 {
 }
 
 .color-section {
-    width: 100%;  /* Changed from 18rem */
-    max-width: 30rem;  /* Added */
+    width: 100%;
+    max-width: 30rem;
     height: auto;
-    background-color: var(--bg-main);
+    background-color: var(--bg-section);
     border-radius: 10px;
     padding: 1rem;
     display: flex;
@@ -175,6 +169,7 @@ h2 {
     justify-content: center;
     flex-direction: column;
     gap: 1rem;
+    border: 2px solid var(--border);
 }
 
 .paint-blob {
@@ -182,7 +177,18 @@ h2 {
     width: 2rem;
     height: 2rem;
     border: 2px solid var(--border);
-    cursor: pointer
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.paint-blob:hover {
+    transform: scale(1.1);
+    border-color: var(--border-dark);
+}
+
+.paint-blob.selected {
+    border: 3px solid var(--border-dark);
+    transform: scale(1.15);
 }
 
 .color-options {
@@ -200,7 +206,35 @@ h2 {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 2rem;  /* Changed from 3rem */
+    margin-top: 2rem;
+    background-color: var(--bg-section);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 2rem;
+    gap: 1rem;
+    width: 100%;
+    max-width: 30rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.result-section h2 {
+    margin-bottom: 0.5rem;
+}
+
+.result-display {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    border: 3px solid var(--border-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    box-shadow: 0 2px 4px var(--shadow);
+    font-size: 0.9rem;
+    color: var(--text-light);
 }
 
 /* ============================================
@@ -210,7 +244,23 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1rem;  /* Changed from 2rem */
+    margin-top: 1rem;
+}
+
+.reset {
+    background-color: var(--bg-card);
+    border: 2px solid var(--border);
+    color: var(--text-dark);
+    padding: 0.6rem 1.5rem;
+    min-width: 10rem;
+    font-size: 1rem;
+}
+
+.reset:hover {
+    background-color: var(--bg-section);
+    border-color: var(--border-dark);
+    transform: none;
+    box-shadow: none;
 }
 
 /* ============================================
@@ -221,4 +271,65 @@ h2 {
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
+}
+
+/* ============================================
+   TARGET SECTION (Game Mode)
+============================================ */
+.target-section {
+    background-color: var(--bg-section);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.target-section h2 {
+    margin-bottom: 1rem;
+}
+
+.target-display {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    border: 3px solid var(--border-dark);
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 2px 4px var(--shadow);
+}
+
+#score-display {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-top: 1rem;
+}
+
+/* ============================================
+   FEEDBACK MESSAGE (Game Mode)
+============================================ */
+.feedback {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feedback.correct {
+    background-color: var(--success-bg);
+    color: var(--success);
+    border: 2px solid var(--success);
+}
+
+.feedback.incorrect {
+    background-color: var(--error-bg);
+    color: var(--error);
+    border: 2px solid var(--error);
 }

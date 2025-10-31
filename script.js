@@ -116,6 +116,28 @@ document.getElementById('mix-btn').addEventListener('click', function() {
         resultDisplay.innerHTML = '';
         document.getElementById('result-hex').textContent = colorNames[mixed] || 'Unknown Color';
     }, 10);
+
+    // Game mode: check if answer is correct
+    if (gameState.mode === 'game') {
+        const feedback = document.getElementById('feedback');
+        if (mixed === gameState.targetColor) {
+            // Correct answer
+            feedback.textContent = '✓ Correct! Well done!';
+            feedback.className = 'feedback correct';
+            
+            // After 2 seconds, load new target and reset selections
+            setTimeout(() => {
+                generateNewTarget();
+                resetSelections();
+                feedback.textContent = '';
+                feedback.className = 'feedback';
+            }, 2000);
+        } else {
+            // Incorrect answer
+            feedback.textContent = '✗ Not quite! Try a different combination.';
+            feedback.className = 'feedback incorrect';
+        }
+    }
 });
 
 // Reset button - clears everything back to start state
@@ -158,8 +180,8 @@ function setMode(mode) {
     document.getElementById('practice-mode-btn').classList.toggle('active', isPractice);
     document.getElementById('game-mode-btn').classList.toggle('active', !isPractice);
     document.getElementById('target-section').style.display = isPractice ? 'none' : 'block';
-    document.getElementById('mix-btn').style.display = isPractice ? 'block' : 'none';
-    document.getElementById('check-btn').style.display = isPractice ? 'none' : 'block';
+    document.getElementById('mix-btn').style.display = 'block'; // Changed: always show mix button
+    document.getElementById('check-section').style.display = isPractice ? 'block' : 'none'; // Changed: use check-section instead of check-btn
     document.getElementById('feedback').textContent = '';
 
     // Reset selections when switching modes
@@ -180,8 +202,6 @@ function setMode(mode) {
     document.getElementById('result-hex').textContent = '';
 
     if (!isPractice) {
-        gameState.score = 0;
-        document.getElementById('score-display').textContent = `Score: 0`;
         generateNewTarget();
     }
 }
@@ -193,54 +213,6 @@ function generateNewTarget() {
     document.getElementById('target-display').style.backgroundColor = gameState.targetColor;
     document.getElementById('feedback').textContent = '';
 }
-
-// ============================================
-// GAME MODE - CHECK ANSWER FUNCTIONALITY
-// ============================================
-
-// Check answer button - validates user's color mix against target
-document.getElementById('check-btn').addEventListener('click', function() {
-    // Ensure both colors are selected
-    if (!selected.color1 || !selected.color2) {
-        alert('Please select both colors before checking!');
-        return;
-    }
-
-    // Get the mixed color result
-    const mixed = getMixedColor(selected.color1, selected.color2);
-    const resultDisplay = document.getElementById('result-display');
-    
-    // Remove any existing animation classes
-    resultDisplay.className = 'result-display';
-    
-    // Trigger animation
-    setTimeout(() => {
-        resultDisplay.classList.add('blend');
-        resultDisplay.style.backgroundColor = mixed;
-        resultDisplay.innerHTML = '';
-        document.getElementById('result-hex').textContent = colorNames[mixed] || 'Unknown Color';
-    }, 10);
-
-    // Check if answer is correct and provide feedback
-    const feedback = document.getElementById('feedback');
-    if (mixed === gameState.targetColor) {
-        // Correct answer
-        gameState.score++;
-        feedback.textContent = '✓ Correct!';
-        feedback.className = 'feedback correct';
-        document.getElementById('score-display').textContent = `Score: ${gameState.score}`;
-        
-        // After 1.5 seconds, load new target and reset selections
-        setTimeout(() => {
-            generateNewTarget();
-            resetSelections();
-        }, 1500);
-    } else {
-        // Incorrect answer
-        feedback.textContent = '✗ Try again!';
-        feedback.className = 'feedback incorrect';
-    }
-});
 
 // ============================================
 // UTILITY FUNCTIONS
