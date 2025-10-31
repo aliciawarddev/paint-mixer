@@ -137,6 +137,14 @@ h2 {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.1rem;
     letter-spacing: 0.04rem;
+    width: auto;  /* Changed from 20rem */
+    min-width: 12rem;  /* Added */
+}
+
+.action-btn:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow);
 }
 
 /* ============================================
@@ -144,7 +152,7 @@ h2 {
 ============================================ */
 .color-selection-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1rem;
@@ -152,7 +160,8 @@ h2 {
 }
 
 .color-section {
-    width: 18rem;
+    width: 100%;  /* Changed from 18rem */
+    max-width: 30rem;  /* Added */
     height: auto;
     background-color: var(--bg-main);
     border-radius: 10px;
@@ -172,6 +181,13 @@ h2 {
     cursor: pointer
 }
 
+.color-options {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 /* ============================================
   RESULT SECTION
 ============================================ */
@@ -180,13 +196,23 @@ h2 {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 3rem;
+    margin-top: 2rem;  /* Changed from 3rem */
 }
 
 /* ============================================
    RESET SECTION
 ============================================ */
 .reset-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;  /* Changed from 2rem */
+}
+
+/* ============================================
+   BUTTON SECTION
+============================================ */
+.button-section {
     display: flex;
     align-items: center;
     justify-content: center;
