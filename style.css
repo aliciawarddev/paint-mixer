@@ -44,7 +44,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 4rem;
     color: var(--text-dark);
 }
 
@@ -70,6 +70,7 @@ h1 {
     text-transform: uppercase;
     font-weight: 800;
     font-family: 'DM Sans', sans-serif;
+    margin-bottom: 2rem;
 }
 
 h2 {
@@ -86,9 +87,7 @@ h2 {
 /* Section */
 .mode-toggle {
     display: flex;
-    gap: 2rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    gap: 1rem;
     align-items: center;
     justify-content: center;
     flex-direction: row;
@@ -96,6 +95,7 @@ h2 {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+    margin-bottom: 2rem;
 }
 
 .mode-btn {
@@ -148,13 +148,11 @@ h2 {
     border: 2px solid var(--border);
     border-radius: 10px;
     padding: 2rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
     text-align: center;
 }
 
 .target-section h2 {
-    margin-bottom: 1rem;
+
 }
 
 .target-display {
@@ -180,7 +178,6 @@ h2 {
     font-weight: 600;
     font-family: 'DM Sans', sans-serif;
     transition: all 0.3s;
-    margin-top: 0.5rem;
 }
 
 .hint-btn:hover {
@@ -220,6 +217,17 @@ h2 {
     box-shadow: 0 4px 8px var(--shadow);
 }
 
+/* ============================================
+   MIX BUTTON SECTION
+============================================ */
+/* Mix button section */
+.mix-button-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
 /* Mix button */
 .mix-btn {
     background-color: var(--accent);
@@ -236,7 +244,7 @@ h2 {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    margin-top: 3rem;
+    margin-bottom: 2rem;
 }
 
 .color-section {
@@ -290,21 +298,21 @@ h2 {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 2rem;
     background-color: var(--bg-section);
     border: 2px solid var(--border);
     border-radius: 10px;
-    padding: 2rem;
+    padding: 1rem;
     gap: 1rem;
     width: 100%;
     max-width: 30rem;
     margin-left: auto;
     margin-right: auto;
     max-width: 25rem;
+    margin-bottom: 0 !important;
 }
 
 .result-section h2 {
-    margin-bottom: 0.5rem;
+    
 }
 
 .result-display {
@@ -359,7 +367,6 @@ h2 {
     font-weight: 600;
     padding: 1rem;
     border-radius: 10px;
-    margin-top: 1rem;
     min-height: 3rem;
     display: flex;
     align-items: center;
@@ -378,6 +385,10 @@ h2 {
     border: 2px solid var(--error);
 }
 
+.feedback:empty {
+    display: none;
+}
+
 /* ============================================
    RESET SECTION
 ============================================ */
@@ -385,7 +396,7 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 .reset {
@@ -404,12 +415,3 @@ h2 {
     box-shadow: none;
 }
 
-/* ============================================
-   BUTTON SECTION
-============================================ */
-.button-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2rem;
-}
