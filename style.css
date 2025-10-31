@@ -23,6 +23,7 @@
     --accent-light: #4AAFAF;
     --accent-medium: #2D9B9B;        
     --accent-dark: #1A6161;    
+    --accent-darkest: #0F4040;
     --success: #5CB85C;       
     --success-bg: #E8F5F0;     
     --error: #D9534F;         
@@ -46,7 +47,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 1.5rem;
     color: var(--text-dark);
 }
 
@@ -55,9 +56,9 @@ body {
 ============================================ */
 /* Card */
 .container {
-    width: 35rem;
+    width: 30rem;
     background-color: var(--bg-card);
-    padding: 2.5rem;
+    padding: 1.5rem;
     border-radius: 15px;
     box-shadow: 0 4px 6px var(--shadow);
 }
@@ -68,7 +69,7 @@ body {
 h1 {
     text-align: center;
     color: var(--accent-dark);
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-transform: uppercase;
     font-weight: 700;
     font-family: 'DM Sans', sans-serif;
@@ -80,7 +81,7 @@ h2 {
     text-align: center;
     color: var(--text-dark);
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-family: 'DM Sans', sans-serif;
     margin-bottom: 0.5rem;
     letter-spacing: 0.02rem;
@@ -134,13 +135,12 @@ h2 {
     background-color: var(--bg-card);
     border: 2px solid var(--border);
     color: var(--text-light);
-    padding: 0.75rem auto;
+    padding: 0.6rem 1.25rem;
     cursor: pointer;
-    font-size: 16px;
     transition: all 0.3s;
     font-weight: 600;
     font-family: 'DM Sans', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     letter-spacing: 0.04rem;
     width: auto;
     height: 3rem;
@@ -158,11 +158,9 @@ h2 {
     background-color: var(--accent-light);
     color: white;
     cursor: default;
-
 }
 
 /* 
-
 .mode-btn:hover {
     background-color: var(--bg-section);
     border: none;
@@ -193,51 +191,72 @@ h2 {
    TARGET SECTION (Game Mode)
 ============================================ */
 .target-section {
-    background-color: var(--bg-section);
-    border: 2px solid var(--border);
+    background-color: var(--bg-card);           
+    border: 2px solid var(--border-dark);       
     border-radius: 10px;
-    padding: 2rem;
+    padding: 1rem;                            
     text-align: center;
-    box-shadow: 0 2px 4px var(--shadow); 
+    box-shadow: 0 3px 8px var(--shadow);        
+    margin-bottom: 1rem;   
+    max-width: 25rem;                
+    margin-left: auto;
+    margin-right: auto;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
 }
 
 .target-section h2 {
-
-}
+    font-size: 1.1rem; 
+}   
 
 .target-display {
-    width: 6rem;
-    height: 6rem;
+    width: 4rem;                                 
+    height: 4rem;
     border-radius: 50%;
-    border: 3px solid var(--border-dark);
+    border: 2px solid white;    
     margin: 0 auto 1rem;
-    box-shadow: 0 2px 4px var(--shadow);
+    box-shadow: 0 4px 12px var(--shadow);       
 }
 
 /* ============================================
    HINT BUTTON (Game mode)
 ============================================ */
 .hint-btn {
-    background-color: var(--bg-card);
-    border: 2px solid var(--border);
-    color: var(--text-dark);
-    padding: 0.5rem 1rem;
+    background-color: var(--accent-lightest);   
+    border: 2px solid var(--accent-light);      
+    color: white;                               
+    padding: 0.3rem 0.3rem;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 0.95rem;
+    font-size: 0.90rem;
     font-weight: 600;
     font-family: 'DM Sans', sans-serif;
     transition: all 0.3s;
 }
 
 .hint-btn:hover {
-    background-color: var(--bg-section);
-    border-color: var(--border-dark);
+    background-color: var(--accent-light);      
+    border: 2px solid var(--accent-medium);     
+    transform: translateY(-2px);                 
+    box-shadow: 0 4px 8px var(--shadow);        
 }
 
 .hint-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+#hint-message {
+    font-size: 1rem;                           
+    font-weight: 600;                          
+    color: var(--text-light);                
+    letter-spacing: 0.05rem;                    
+    font-family: 'DM Sans', sans-serif;         
+    text-align: center;
 }
 
 /* ============================================
@@ -247,14 +266,13 @@ h2 {
 /* Action button */
 .action-btn {
     flex: 1;
-    padding: 0.75rem 0.5rem;
+    padding: 0.6rem 1.25rem;
     cursor: pointer;
-    font-size: 16px;
     transition: all 0.3s;
     border-radius: 10px;
     font-weight: 600;
     font-family: 'DM Sans', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     letter-spacing: 0.04rem;
     width: auto;
     min-width: 12rem;
@@ -269,7 +287,7 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
     margin-bottom: 1rem;
 }
 
@@ -279,20 +297,24 @@ h2 {
     height: auto;
     background-color: var(--bg-section);
     border-radius: 10px;
-    padding: 1rem;
+    padding: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 0.5rem;
     border: 2px solid var(--border);
     box-shadow: 0 2px 4px var(--shadow);  
+
+}
+
+.color-section h2 {
+    font-size: 1rem;
 }
 
 .paint-blob {
     border-radius: 50%;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.2rem;
+    height: 2.2rem;
     cursor: pointer;
     transition: all 0.2s;
     border: 2px solid white;
@@ -320,7 +342,7 @@ h2 {
 }
 
 /* ============================================
-   MIX BUTTON SECTION
+   MIX & NEXT BUTTON SECTIONS
 ============================================ */
 /* Mix button section */
 .mix-button-section {
@@ -330,18 +352,26 @@ h2 {
     margin-bottom: 1rem;
 }
 
-/* Mix button */
-#mix-btn {
-    background-color: var(--accent-light);
-    border: 2px solid var(--accent-medium);
+/* Next button section*/
+#next-section {
+    margin-top: 1rem;
     max-width: 25rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#mix-btn,
+#next-btn {
+    background-color: var(--accent-medium);      
+    border: 2px solid var(--accent-dark);
     color: white;
 }
 
-#mix-btn:hover {
-    background-color: var(--accent-medium);
+#mix-btn:hover,
+#next-btn:hover {
+    background-color: var(--accent-dark);                
+    border: 2px solid var(--accent-darkest);
     transform: translateY(-2px);
-    border: 2px solid var(--accent-dark);
     box-shadow: 0 4px 8px var(--shadow);
     color: white;
 }
@@ -357,8 +387,8 @@ h2 {
     background-color: var(--bg-card);
     border: 2px solid var(--border-dark);
     border-radius: 10px;
-    padding: 1.5rem;
-    gap: 1.25rem;
+    padding: 0.75rem;
+    gap: 0.75rem;
     width: 100%;
     max-width: 30rem;
     margin-left: auto;
@@ -369,25 +399,25 @@ h2 {
 }
 
 .result-section h2 {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: var(--text-dark);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem;
 }
 
 .result-display {
     color: var(--text-light);
     background-color: var(--bg-section);
-    width: 9rem;
-    height: 9rem;
+    width: 6rem;
+    height: 6rem;
     border-radius: 50%;
     border: 2px solid var(--accent-medium);
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 1rem;
+    padding: 0.75rem;
     box-shadow: 0 4px 12px var(--shadow);
-    font-size: 0.95rem;
+    font-size: 0.90rem;
     transition: background-color 0.6s ease, transform 0.3s ease;
 }
 
@@ -425,27 +455,32 @@ h2 {
 ============================================ */
 .feedback {
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
-    padding: 1rem;
+    padding: 0.6rem 1.25rem;
     border-radius: 10px;
     min-height: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-dark);
+    max-width: 25rem;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .feedback.correct {
     background-color: var(--success-bg);
     color: var(--success);
     border: 2px solid var(--success);
+    margin-top: 1rem;
 }
 
 .feedback.incorrect {
     background-color: var(--error-bg);
     color: var(--error);
     border: 2px solid var(--error);
+    margin-top: 1rem;
 }
 
 .feedback:empty {
@@ -468,7 +503,7 @@ h2 {
     background-color: var(--accent-lightest);
     border: 2px solid var(--accent-light);
     color: white;
-    padding: 0.6rem 1.5rem;
+    padding: 0.6rem 1.25rem;
     min-width: 10rem;
     font-size: 1rem;
 }

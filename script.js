@@ -172,7 +172,7 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     const resultDisplay = document.getElementById('result-display');
     resultDisplay.className = 'result-display';
     resultDisplay.style.backgroundColor = '';
-    resultDisplay.innerHTML = '<p>Select two colors and click "Mix Colors!"</p>';
+    resultDisplay.innerHTML = '<p>Select two colours to mix</p>';
     document.getElementById('result-hex').textContent = '';
 
     // Reset feedback message
@@ -223,7 +223,7 @@ function setMode(mode) {
     const resultDisplay = document.getElementById('result-display');
     resultDisplay.className = 'result-display';
     resultDisplay.style.backgroundColor = '';
-    resultDisplay.innerHTML = '<p>Select two colors and click "Mix Colors!"</p>';
+    resultDisplay.innerHTML = '<p>Select two colours to mix</p>';
     document.getElementById('result-hex').textContent = '';
 
     if (!isPractice) {
@@ -329,7 +329,7 @@ function resetSelections() {
     const resultDisplay = document.getElementById('result-display');
     resultDisplay.className = 'result-display';
     resultDisplay.style.backgroundColor = '';
-    resultDisplay.innerHTML = '<p>Select two colors and click "Mix Colors!"</p>';
+    resultDisplay.innerHTML = '<p>Select two colours to mix</p>';
     document.getElementById('result-hex').textContent = '';
 }
 
