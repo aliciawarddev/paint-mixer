@@ -11,17 +11,21 @@
     --color-orange: #FF851E;
     --color-green: #2A892D;
 
-    /* Color Palette */
-    --bg-main: #F5F5F0;        /* Soft cream background */
-    --bg-card: #FFFFFF;        /* White for cards/panels */
-    --text-dark: #2C2C2C;      /* Dark gray for text */
-    --text-light: #6B6B6B;     /* Medium gray for secondary text */
-    --border: #D4D4D4;         /* Light gray for borders */
-    --accent-light: #4A90E2; 
-    --accent-dark: #3A7BC8;         /* Soft blue for accents/buttons */
-    --success: #5CB85C;        /* Green for success states */
-    --error: #D9534F;          /* Red for errors */
-    --shadow: rgba(0,0,0,0.1); /* Subtle shadows */
+    /* UI Palette */
+    --bg-main: #F5F5F0;        /* Body background */
+    --bg-card: #FFFFFF;        /* Container background */
+    --bg-section: #FAFAF7;     /* Color section background */
+    --text-dark: #2C2C2C;      /* Primary text */
+    --text-light: #6B6B6B;     /* Secondary text */
+    --border: #D4D4D4;         /* Standard borders */
+    --border-dark: #B8B8B8;    /* Emphasis borders */
+    --accent: #4A90E2;         /* Primary buttons */
+    --accent-dark: #3A7BC8;    /* Button hover/active */
+    --success: #5CB85C;        /* Correct feedback */
+    --success-bg: #E8F5E9;     /* Success background */
+    --error: #D9534F;          /* Incorrect feedback */
+    --error-bg: #FFEBEE;       /* Error background */
+    --shadow: rgba(0,0,0,0.1); /* Shadows */
    } 
 
 /* ============================================
