@@ -12,20 +12,20 @@
     --color-green: #2A892D;
 
     /* UI Palette */
-    --bg-main: #F5F5F0;        /* Body background */
+    --bg-main: #F0F7F7;        /* Body background */
     --bg-card: #FFFFFF;        /* Container background */
-    --bg-section: #FAFAF7;     /* Color section background */
+    --bg-section: #F5FAFA;     /* Color section background */
     --text-dark: #2C2C2C;      /* Primary text */
-    --text-light: #6B6B6B;     /* Secondary text */
-    --border: #D4D4D4;         /* Standard borders */
-    --border-dark: #B8B8B8;    /* Emphasis borders */
-    --accent: #4A90E2;         /* Primary buttons */
-    --accent-dark: #3A7BC8;    /* Button hover/active */
+    --text-light:#5A7373;     /* Secondary text */
+    --border: #D0E0E0;         /* Standard borders */
+    --border-dark: #A8C5C5;    /* Emphasis borders */
+    --accent: #2D9B9B;         /* Primary buttons */
+    --accent-dark: #238080;    /* Button hover/active */
     --success: #5CB85C;        /* Correct feedback */
-    --success-bg: #E8F5E9;     /* Success background */
+    --success-bg: #E8F5F0;     /* Success background */
     --error: #D9534F;          /* Incorrect feedback */
     --error-bg: #FFEBEE;       /* Error background */
-    --shadow: rgba(0,0,0,0.1); /* Shadows */
+    --shadow: rgba(45, 155, 155, 0.1); /* Shadows */
    } 
 
 /* ============================================
@@ -51,8 +51,9 @@ body {
 /* ============================================
    CONTAINER
 ============================================ */
+/* Card */
 .container {
-    width: auto;
+    width: 40rem;
     background-color: var(--bg-card);
     padding: 4rem;
     border-radius: 15px;
@@ -87,12 +88,13 @@ h2 {
     gap: 1rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
 
 .mode-btn {
-    flex: 1;
-    padding: 0.75rem 0.5rem;
-    border: 3px solid var(--border);
+    border: 2px solid var(--border);
     background-color: var(--bg-card);
     cursor: pointer;
     font-size: 16px;
@@ -103,6 +105,9 @@ h2 {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.1rem;
     letter-spacing: 0.04rem;
+    width: 11rem;
+    height: 3rem;
+
 }
 
 .mode-btn:hover {
