@@ -116,29 +116,33 @@ h2 {
     flex: 1;
 }
 
+/* 
+
 .mode-btn:hover {
     background-color: var(--bg-section);
-    border-color: var(--border-dark);
+    border: none;
 }
 
 .mode-btn.active {
     background-color: var(--accent);
     color: var(--bg-card);
-    border-color: var(--accent-dark);
+    border: none;
 }
 
 .mode-btn:focus,
 .action-btn:focus,
 .paint-blob:focus {
-    outline: 3px solid var(--accent);
-    outline-offset: 2px;
+   outline: none;
+   border: none;
 }
 
 .mode-btn:focus:not(:focus-visible),
 .action-btn:focus:not(:focus-visible),
 .paint-blob:focus:not(:focus-visible) {
     outline: none;
+    border: none;
 }
+*/ 
 
 /* ============================================
    TARGET SECTION (Game Mode)
@@ -165,7 +169,7 @@ h2 {
 }
 
 /* ============================================
-   HINT BUTTON
+   HINT BUTTON (Game mode)
 ============================================ */
 .hint-btn {
     background-color: var(--bg-card);
@@ -211,11 +215,7 @@ h2 {
     max-width: 25rem;
 }
 
-.action-btn:hover {
-    background-color: var(--accent-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px var(--shadow);
-}
+
 
 /* ============================================
    MIX BUTTON SECTION
@@ -229,10 +229,16 @@ h2 {
 }
 
 /* Mix button */
-.mix-btn {
+#mix-btn {
     background-color: var(--accent);
     border: 2px solid var(--accent-dark);
-    max-width: 30rem;
+    max-width: 25rem;
+}
+
+#mix-btn:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow);
 }
 
 /* ============================================
@@ -408,10 +414,12 @@ h2 {
     font-size: 1rem;
 }
 
+/* 
 .reset:hover {
     background-color: var(--bg-section);
     border-color: var(--border-dark);
     transform: none;
     box-shadow: none;
 }
+    */ 
 
