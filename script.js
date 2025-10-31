@@ -5,11 +5,10 @@
 // Object to store both selected colors
 const selected = {color1: null, color2: null};
 
-// Game state to track mode, target color, and score
+// Game state to track mode and target color
 const gameState = {
     mode: 'practice',
-    targetColor: null,
-    score: 0
+    targetColor: null
 };
 
 // ============================================
@@ -91,7 +90,7 @@ document.querySelectorAll('.color-btn').forEach(btn => {
 });
 
 // ============================================
-// PRACTICE MODE - MIX & RESET BUTTONS
+// MIX & RESET BUTTONS
 // ============================================
 
 // Mix button - combines the two colors
@@ -146,10 +145,11 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     selected.color1 = null;
     selected.color2 = null;
 
-    // Remove selected class from all buttons
+    // Remove selected class from all buttons and re-enable them
     document.querySelectorAll('.color-btn').forEach(btn => {
         btn.classList.remove('selected');
         btn.disabled = false;
+        btn.style.opacity = '1';  // Add this line
     });
 
     // Reset result display
@@ -165,7 +165,7 @@ document.getElementById('reset-btn').addEventListener('click', function() {
 });
 
 // ============================================
-// GAME MODE - MODE TOGGLE & TARGET GENERATION
+// MODE TOGGLE & TARGET GENERATION
 // ============================================
 
 // Mode toggle functionality
@@ -180,9 +180,8 @@ function setMode(mode) {
     document.getElementById('practice-mode-btn').classList.toggle('active', isPractice);
     document.getElementById('game-mode-btn').classList.toggle('active', !isPractice);
     document.getElementById('target-section').style.display = isPractice ? 'none' : 'block';
-    document.getElementById('mix-btn').style.display = 'block'; // Changed: always show mix button
-    document.getElementById('check-section').style.display = isPractice ? 'block' : 'none'; // Changed: use check-section instead of check-btn
     document.getElementById('feedback').textContent = '';
+    document.getElementById('feedback').className = 'feedback';
 
     // Reset selections when switching modes
     selected.color1 = null;
@@ -221,6 +220,7 @@ function generateNewTarget() {
     gameState.targetColor = validTargets[Math.floor(Math.random() * validTargets.length)];
     document.getElementById('target-display').style.backgroundColor = gameState.targetColor;
     document.getElementById('feedback').textContent = '';
+    document.getElementById('feedback').className = 'feedback';
 }
 
 // ============================================
@@ -242,7 +242,8 @@ function resetSelections() {
     const resultDisplay = document.getElementById('result-display');
     resultDisplay.className = 'result-display';
     resultDisplay.style.backgroundColor = '#ffffff';
-    resultDisplay.innerHTML = '';
+    resultDisplay.innerHTML = '<p>Select two colors and click "Mix Colors!"</p>';
+    document.getElementById('result-hex').textContent = '';
 }
 
 // Function to get the mixed color from pre-stored results
@@ -272,15 +273,6 @@ function getMixedColor(color1, color2) {
 
 // Function to update which color buttons are available based on selection
 function updateAvailableColors(targetSection, selectedColor) {
-    // Don't restrict colors in game mode - keep the challenge!
-    if (gameState.mode === 'game') {
-        // Re-enable all buttons in game mode
-        document.querySelectorAll('.color-btn').forEach(btn => {
-            btn.disabled = false;
-        });
-        return;
-    }
-    
     // Get all buttons for the OTHER section (not the one that was just clicked)
     const otherSection = targetSection === 'color1' ? 'color2' : 'color1';
     const buttons = document.querySelectorAll(`[data-target="${otherSection}"]`);
@@ -289,6 +281,7 @@ function updateAvailableColors(targetSection, selectedColor) {
     if (!selectedColor) {
         buttons.forEach(btn => {
             btn.disabled = false;
+            btn.style.opacity = '1';
         });
         return;
     }
@@ -304,22 +297,23 @@ function updateAvailableColors(targetSection, selectedColor) {
         }
     });
     
+    // Also allow mixing the same color with itself
+    validColors.add(selectedColor);
+    
     // Enable/disable buttons based on valid combinations
     buttons.forEach(btn => {
         const color = btn.dataset.color;
         if (validColors.has(color)) {
             btn.disabled = false;
+            btn.style.opacity = '1';
         } else {
             btn.disabled = true;
+            btn.style.opacity = '0.3';
         }
     });
 }
 
-// Toggle the slider position
-document.getElementById('game-mode-btn').addEventListener('click', function() {
-    document.querySelector('.mode-toggle').classList.add('game-mode-active');
-});
-
-document.getElementById('practice-mode-btn').addEventListener('click', function() {
-    document.querySelector('.mode-toggle').classList.remove('game-mode-active');
+// Initialize practice mode as default when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    setMode('practice');
 });
