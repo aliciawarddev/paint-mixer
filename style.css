@@ -116,6 +116,72 @@ h2 {
     border-color: var(--accent-dark);
 }
 
+.mode-btn:focus,
+.action-btn:focus,
+.paint-blob:focus {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.mode-btn:focus:not(:focus-visible),
+.action-btn:focus:not(:focus-visible),
+.paint-blob:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* ============================================
+   TARGET SECTION (Game Mode)
+============================================ */
+.target-section {
+    background-color: var(--bg-section);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.target-section h2 {
+    margin-bottom: 1rem;
+}
+
+.target-display {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    border: 3px solid var(--border-dark);
+    margin: 0 auto 1rem;
+    box-shadow: 0 2px 4px var(--shadow);
+}
+
+/* ============================================
+   HINT BUTTON
+============================================ */
+.hint-btn {
+    background-color: var(--bg-card);
+    border: 2px solid var(--border);
+    color: var(--text-dark);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.3s;
+    margin-top: 0.5rem;
+}
+
+.hint-btn:hover {
+    background-color: var(--bg-section);
+    border-color: var(--border-dark);
+}
+
+.hint-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* ============================================
    ACTION BUTTONS
 ============================================ */
@@ -240,6 +306,62 @@ h2 {
     box-shadow: 0 2px 4px var(--shadow);
     font-size: 0.9rem;
     color: var(--text-light);
+    transition: background-color 0.6s ease, transform 0.3s ease;
+}
+
+.result-display.blend {
+    animation: colorBlend 0.6s ease-in-out;
+}
+
+@keyframes colorBlend {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#result-hex {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05rem;
+}
+
+/* ============================================
+   FEEDBACK MESSAGE (Game Mode)
+============================================ */
+.feedback {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feedback.correct {
+    background-color: var(--success-bg);
+    color: var(--success);
+    border: 2px solid var(--success);
+}
+
+.feedback.incorrect {
+    background-color: var(--error-bg);
+    color: var(--error);
+    border: 2px solid var(--error);
 }
 
 /* ============================================
@@ -276,65 +398,4 @@ h2 {
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
-}
-
-/* ============================================
-   TARGET SECTION (Game Mode)
-============================================ */
-.target-section {
-    background-color: var(--bg-section);
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    padding: 2rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.target-section h2 {
-    margin-bottom: 1rem;
-}
-
-.target-display {
-    width: 6rem;
-    height: 6rem;
-    border-radius: 50%;
-    border: 3px solid var(--border-dark);
-    margin: 0 auto 1.5rem;
-    box-shadow: 0 2px 4px var(--shadow);
-}
-
-#score-display {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-top: 1rem;
-}
-
-/* ============================================
-   FEEDBACK MESSAGE (Game Mode)
-============================================ */
-.feedback {
-    text-align: center;
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 1rem;
-    border-radius: 10px;
-    margin-top: 1rem;
-    min-height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.feedback.correct {
-    background-color: var(--success-bg);
-    color: var(--success);
-    border: 2px solid var(--success);
-}
-
-.feedback.incorrect {
-    background-color: var(--error-bg);
-    color: var(--error);
-    border: 2px solid var(--error);
 }

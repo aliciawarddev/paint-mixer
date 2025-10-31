@@ -4,6 +4,7 @@
 
 // Object to store both selected colors
 const selected = {color1: null, color2: null};
+let lastMixed = {color1: null, color2: null}; 
 
 // Game state to track mode and target color
 const gameState = {
@@ -86,6 +87,10 @@ document.querySelectorAll('.color-btn').forEach(btn => {
         
         // Update available colors in the other section
         updateAvailableColors(target, color);
+        
+        // Reset lastMixed when selection changes
+        lastMixed.color1 = null;
+        lastMixed.color2 = null;
     });
 });
 
@@ -100,6 +105,15 @@ document.getElementById('mix-btn').addEventListener('click', function() {
         alert('Please select both colors before mixing!');
         return;
     }
+
+    // Prevent re-mixing the same combination
+    if (selected.color1 === lastMixed.color1 && selected.color2 === lastMixed.color2) {
+        return; // Do nothing if same colors
+    }
+
+    // Store current selection
+    lastMixed.color1 = selected.color1;
+    lastMixed.color2 = selected.color2;
 
     // Mix the colors and display the result with animation
     const mixed = getMixedColor(selected.color1, selected.color2);
@@ -116,30 +130,29 @@ document.getElementById('mix-btn').addEventListener('click', function() {
         document.getElementById('result-hex').textContent = colorNames[mixed] || 'Unknown Color';
     }, 10);
 
-// Game mode: check if answer is correct
-if (gameState.mode === 'game') {
-    const feedback = document.getElementById('feedback');
-    if (mixed === gameState.targetColor) {
-        // Correct answer
-        feedback.textContent = '✓ Correct! Well done!';
-        feedback.className = 'feedback correct';
-        
-        // Show next button
-        document.getElementById('next-btn').style.display = 'block';
-    } else {
-        // Incorrect answer
-        feedback.textContent = '✗ Not quite! Try a different combination.';
-        feedback.className = 'feedback incorrect';
-        
-        // Auto-reset after 2.5 seconds on incorrect answer
-        setTimeout(() => {
-            resetSelections();
-            feedback.textContent = '';
-            feedback.className = 'feedback';
-        }, 2500);
+    // Game mode: check if answer is correct
+    if (gameState.mode === 'game') {
+        const feedback = document.getElementById('feedback');
+        if (mixed === gameState.targetColor) {
+            // Correct answer
+            feedback.textContent = '✓ Correct! Well done!';
+            feedback.className = 'feedback correct';
+            
+            // Show next button
+            document.getElementById('next-section').style.display = 'flex';
+        } else {
+            // Incorrect answer
+            feedback.textContent = '✗ Not quite! Try a different combination.';
+            feedback.className = 'feedback incorrect';
+            
+            // Auto-reset after 2.5 seconds on incorrect answer
+            setTimeout(() => {
+                resetSelections();
+                feedback.textContent = '';
+                feedback.className = 'feedback';
+            }, 2500);
+        }
     }
-}
-
 });
 
 // Reset button - clears everything back to start state
@@ -152,7 +165,7 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     document.querySelectorAll('.color-btn').forEach(btn => {
         btn.classList.remove('selected');
         btn.disabled = false;
-        btn.style.opacity = '1';  // Add this line
+        btn.style.opacity = '1';
     });
 
     // Reset result display
@@ -165,6 +178,10 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     // Reset feedback message
     document.getElementById('feedback').textContent = '';
     document.getElementById('feedback').className = 'feedback';
+
+    // Reset lastMixed
+    lastMixed.color1 = null;
+    lastMixed.color2 = null;
 });
 
 // ============================================
@@ -185,16 +202,21 @@ function setMode(mode) {
     document.getElementById('target-section').style.display = isPractice ? 'none' : 'block';
     document.getElementById('feedback').textContent = '';
     document.getElementById('feedback').className = 'feedback';
-    document.getElementById('next-section').style.display = 'flex'; // Change this line from 'next-btn' to 'next-section'
+    document.getElementById('next-section').style.display = 'none';
 
     // Reset selections when switching modes
     selected.color1 = null;
     selected.color2 = null;
     
+    // Reset lastMixed
+    lastMixed.color1 = null;
+    lastMixed.color2 = null;
+
     // Remove selected class from all buttons
     document.querySelectorAll('.color-btn').forEach(btn => {
         btn.classList.remove('selected');
         btn.disabled = false;
+        btn.style.opacity = '1';
     });
 
     // Reset result display
@@ -228,6 +250,19 @@ function generateNewTarget() {
 }
 
 // ============================================
+// NEXT BUTTON
+// ============================================
+
+// Next button - loads new target in game mode
+document.getElementById('next-btn').addEventListener('click', function() {
+    generateNewTarget();
+    resetSelections();
+    document.getElementById('feedback').textContent = '';
+    document.getElementById('feedback').className = 'feedback';
+    document.getElementById('next-section').style.display = 'none';
+});
+
+// ============================================
 // UTILITY FUNCTIONS
 // ============================================
 
@@ -237,10 +272,15 @@ function resetSelections() {
     selected.color1 = null;
     selected.color2 = null;
     
+    // Reset lastMixed
+    lastMixed.color1 = null;
+    lastMixed.color2 = null;
+    
     // Remove selected class from all buttons
     document.querySelectorAll('.color-btn').forEach(btn => {
         btn.classList.remove('selected');
         btn.disabled = false;
+        btn.style.opacity = '1';
     });
     
     const resultDisplay = document.getElementById('result-display');
@@ -320,16 +360,4 @@ function updateAvailableColors(targetSection, selectedColor) {
 // Initialize practice mode as default when page loads
 document.addEventListener('DOMContentLoaded', function() {
     setMode('practice');
-});
-
-// ============================================
-// NEXT BUTTON
-// ============================================
-// Next button - loads new target in game mode
-document.getElementById('next-btn').addEventListener('click', function() {
-    generateNewTarget();
-    resetSelections();
-    document.getElementById('feedback').textContent = '';
-    document.getElementById('feedback').className = 'feedback';
-    document.getElementById('next-section').style.display = 'none'; // Change to 'next-section'
 });
