@@ -209,7 +209,16 @@ function setMode(mode) {
 // Generate random target color
 function generateNewTarget() {
     const allResults = Object.values(mixingResults);
-    gameState.targetColor = allResults[Math.floor(Math.random() * allResults.length)];
+    // Filter out primary colors (results of mixing same color)
+    const validTargets = allResults.filter(color => 
+        color !== '#FF361C' && // Red
+        color !== '#1F4F99' && // Blue
+        color !== '#FEFF01' && // Yellow
+        color !== '#823A84' && // Purple
+        color !== '#FF851E' && // Orange
+        color !== '#2A892D'    // Green
+    );
+    gameState.targetColor = validTargets[Math.floor(Math.random() * validTargets.length)];
     document.getElementById('target-display').style.backgroundColor = gameState.targetColor;
     document.getElementById('feedback').textContent = '';
 }
