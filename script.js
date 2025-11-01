@@ -204,6 +204,15 @@ function setMode(mode) {
     document.getElementById('feedback').className = 'feedback';
     document.getElementById('next-section').style.display = 'none';
 
+    // Update reset section margin based on mode
+    if (isPractice) {
+        document.querySelector('.reset-section').classList.add('no-feedback');
+        document.querySelector('.reset-section').classList.remove('game-mode');
+    } else {
+        document.querySelector('.reset-section').classList.remove('no-feedback');
+        document.querySelector('.reset-section').classList.add('game-mode');
+    }
+
     // Reset selections when switching modes
     selected.color1 = null;
     selected.color2 = null;
