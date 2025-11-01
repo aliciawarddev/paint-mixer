@@ -100,13 +100,19 @@
             <p id="result-hex"></p>
         </div>
 
+        <!-- FEEDBACK-->
+        <div class="game-feedback-container">
+            <!-- Feedback message-->
+            <p id="feedback" class="feedback"></p>
+            
+            <!-- Next button (only visible after correct answer in game mode)-->
+            <div id="next-section" style="display: none">
+                <button id="next-btn" class=action-btn>Next Challenge</button>
+            </div>
+        </div>
+
         <!-- Feedback message (only visible in game mode) -->
         <p id="feedback" class="feedback"></p>
-
-        <!-- Next button (only visible after correct answer in game mode) -->
-        <div class="button-section" id="next-section" style="display: none;">
-            <button id="next-btn" class="action-btn">Next Challenge</button>
-        </div>
 
         <!-- Button to reset all selections -->
         <div class="reset-section">

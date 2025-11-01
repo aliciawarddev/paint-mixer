@@ -15,7 +15,7 @@
     --bg-main: #F0F7F7;       
     --bg-card: #FFFFFF;       
     --bg-section: #F5FAFA;     
-    --text-dark: #2C2C2C;     
+    --text-dark: #3A3A3A;     
     --text-light:#5A7373;    
     --border: #D0E0E0;         
     --border-dark: #A8C5C5;  
@@ -24,6 +24,7 @@
     --accent-medium: #2D9B9B;        
     --accent-dark: #1A6161;    
     --accent-darkest: #0F4040;
+    --accent-warm: #E89B6F;
     --success: #5CB85C;       
     --success-bg: #E8F5F0;     
     --error: #D9534F;         
@@ -68,9 +69,8 @@ body {
 ============================================ */
 h1 {
     text-align: center;
-    color: var(--accent-darkest);
-    font-size: 1.8rem;
-    text-transform: uppercase;
+    color: var(--accent-dark);
+    font-size: 2.2rem;
     font-weight: 800;
     font-family: 'DM Sans', sans-serif;
     margin-bottom: 1rem;
@@ -354,7 +354,6 @@ h2 {
 
 /* Next button section*/
 #next-section {
-    margin-top: 1rem;
     max-width: 25rem;
     margin-right: auto;
     margin-left: auto;
@@ -365,6 +364,7 @@ h2 {
     background-color: var(--accent-medium);      
     border: 2px solid var(--accent-dark);
     color: white;
+    height: 2.8rem;
 }
 
 #mix-btn:hover,
@@ -374,6 +374,62 @@ h2 {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px var(--shadow);
     color: white;
+}
+
+/* ============================================
+   GAME FEEDBACK & NEXT BUTTON CONTAINER
+============================================ */
+.game-feedback-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+    max-width: 25rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ============================================
+   FEEDBACK MESSAGE (Game Mode)
+============================================ */
+.feedback {
+    text-align: center;                   
+    font-size: 1rem;
+    letter-spacing: 0.04rem;
+    font-weight: 600;
+    padding: 0.6rem 1.25rem;             
+    border-radius: 10px;                   /* Remove fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;         /* Left-align content */
+    flex: 1;                             /* Take available space */
+    color: var(--text-dark);
+    height: 2.8rem;
+}
+
+.feedback.correct {
+    background-color: var(--success-bg);
+    color: var(--success);
+    border: 2px solid var(--success);
+}
+
+.feedback.incorrect {
+    background-color: var(--error-bg);
+    color: var(--error);
+    border: 2px solid var(--error);
+}
+
+.feedback:empty {
+    display: none;
+}
+
+/* ============================================
+   NEXT BUTTON SECTION
+============================================ */
+#next-section {
+    flex-shrink: 0;                      /* Don't shrink the button */
 }
 
 /* ============================================
@@ -453,6 +509,7 @@ h2 {
 /* ============================================
    FEEDBACK MESSAGE (Game Mode)
 ============================================ */
+/* 
 .feedback {
     text-align: center;
     font-size: 1rem;
@@ -486,6 +543,7 @@ h2 {
 .feedback:empty {
     display: none;
 }
+    */ 
 
 /* ============================================
    RESET SECTION

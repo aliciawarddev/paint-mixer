@@ -135,7 +135,7 @@ document.getElementById('mix-btn').addEventListener('click', function() {
         const feedback = document.getElementById('feedback');
         if (mixed === gameState.targetColor) {
             // Correct answer
-            feedback.textContent = '✓ Correct! Well done!';
+            feedback.textContent = '✓ Correct!';
             feedback.className = 'feedback correct';
             
             // Show next button
