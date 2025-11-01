@@ -61,7 +61,7 @@ body {
     background-color: var(--bg-card);
     padding: 1.5rem;
     border-radius: 15px;
-    box-shadow: 0 4px 6px var(--shadow);
+    box-shadow: 0 4px 8px var(--shadow);
 }
 
 /* ============================================
